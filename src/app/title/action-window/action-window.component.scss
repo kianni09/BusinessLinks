@@ -49,5 +49,11 @@
             @include main-button;
             width: 160px;
         }
+        .error-message {
+            width: 100%;
+            color: $deccept-color;
+            font-size: $main-text-size;
+            margin-bottom: 20px;
+        }
     }
 }

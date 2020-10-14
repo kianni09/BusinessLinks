@@ -4,6 +4,8 @@ import { environment } from '../environments/environment.prod';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { User, loginForm, registrationForm } from './main.models';
+
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +20,25 @@ export class MainService {
   public landingWindowAction: boolean = false;
   public closeLandingWindowAnimation: boolean = false;
   public loginWindow: boolean = true;
+
+  public user: User;
+
+  public loginCheck$ (data: string) {
+    return this.http.post( environment.loginCheck, data );
+  }
+
+  public userRegistration$ (data: registrationForm) {
+    return this.http.post( environment.registration, data );
+  }
+
+  public userLogin$ (data: loginForm) {
+    return this.http.post( environment.login, data );
+  }
+
+  public loginSucces(user: User) {
+    this.user = user;
+    this.router.navigate(['main']);
+  }
 
 
 

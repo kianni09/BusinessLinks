@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../main.service';
-import { loginForm, registrationForm } from '../../main.models';
+import { loginForm, registrationForm, User } from '../../main.models';
 
 @Component({
   selector: 'action-window',
@@ -22,6 +22,7 @@ export class ActionWindowComponent implements OnInit {
     secondName: '',
     login: '',
     password: '',
+    dialogues: []
   };
 
   public inputSection: boolean = true;
@@ -31,12 +32,20 @@ export class ActionWindowComponent implements OnInit {
     return this.mainService.loginWindow;
   }
 
+  public unsuccesLogin: boolean = false;
+
   public action (type: string) {
     this.isLoad = true;
     if (type === 'login') {
-      setTimeout(() => {
-        this.isLoad = false;
-      }, 1600);
+      this.mainService.userLogin$(this.logForm).subscribe( (user: User) => {
+        if (user) {
+          this.mainService.loginSucces(user);
+        } else {
+          this.isLoad = false;
+          this.unsuccesLogin = true;
+          
+        }
+      } )
     } else {
       setTimeout(() => {
         this.isLoad = false;

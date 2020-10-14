@@ -7,6 +7,7 @@
 
         <input *ngIf="isLogin" [(ngModel)]="logForm.login" class="input-field" type="text" placeholder="Введіть ваш логін">
         <input *ngIf="isLogin" [(ngModel)]="logForm.password" class="input-field" type="password" placeholder="Введіть ваш пароль">
+        <div *ngIf="unsuccesLogin" class="error-message">Логін або пароль невірні</div>
         <div *ngIf="isLogin && !isLoad" (click)="action('login')" class="login-button">Увійти</div>
 
         <input *ngIf="!isLogin" [(ngModel)]="regForm.firstName" class="input-field" type="text" placeholder="Прізвище" autocomplete="new-password">

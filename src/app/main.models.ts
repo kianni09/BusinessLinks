@@ -8,4 +8,13 @@ export interface registrationForm {
     secondName: string;
     login: string;
     password: string;
+    dialogues: string [];
+}
+
+export interface User {
+    userID: string
+    firstName: string;
+    secondName: string;
+    login: string;
+    dialogues: string [];
 }

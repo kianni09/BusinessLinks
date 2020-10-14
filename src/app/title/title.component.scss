@@ -1,0 +1,87 @@
+@import "../app.component.scss";
+.view-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    .content {
+        @include custom-scrollbar;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $main-color;
+        padding: 40px;
+        height: calc(100% - 80px);
+        width: calc(100% - 80px);
+        max-width: 1120px;
+        box-shadow: 20px 0px 15px #131313, -20px 0px 15px #191919;
+        .head {
+            @include line-center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            .logo-block {
+                @include line-center;
+            }
+            .buttons-block {
+                @include line-center;
+                width: 340px;
+                justify-content: space-between;
+            }
+        }
+        .info-block {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.logo-head {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.name-head {
+    font-size: 40px;
+    color: $text-main-color;
+    font-family: $font-family;
+}
+
+.login-button {
+    @include main-button;
+    width: 140px;
+}
+
+.registration-button {
+    @include main-button;
+    background-color: $action-color;
+    width: 140px;
+}
+
+.landing-image {
+    display: block;
+    width: 400px;
+    height: 300px;
+}
+
+.first {
+    margin-right: 40px;
+}
+
+.second {
+    margin-left: 40px;
+}
+
+.landing-info {
+    width: 400px;
+    font-size: 25px;
+    color: $text-main-color;
+    font-family: $font-family;
+}

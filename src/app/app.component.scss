@@ -1,0 +1,280 @@
+//Colors variables
+$background-color: #1a1a1a; // 1b212c
+$main-color: #161616; // 1a1a1a
+$selection-color: #353d4b; //# 283851
+$action-color: #eb6e3d; // eb6e3d
+$text-main-color: #ffffff;
+$text-secondary-color: #e8e8e8b9;
+$deccept-color: #d93128;
+$accept-color: #7ec544;
+//Font variables
+$logo-font: "Alata";
+$font-family: "Rubik"; //Segoe UI Rubik
+$title-text-size: 20px;
+$main-text-size: 18px;
+$addiction-text-size: 14px;
+//Size variables
+$workspace-maxwidth: 1920px;
+//Mixins sector
+@mixin show-animation {
+    opacity: 0;
+    animation: show 1.0s 1;
+    animation-fill-mode: forwards;
+}
+
+@mixin custom-scrollbar {
+    overflow: auto;
+    scrollbar-color: $action-color rgba(0, 0, 0, 0.082) !important;
+    scrollbar-width: thin !important;
+    &::-webkit-scrollbar {
+        width: 3px !important;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px !important;
+        -webkit-box-shadow: inset 0 0 6px $action-color !important;
+    }
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.082) !important;
+        border-radius: 10px !important;
+    }
+}
+
+@mixin line-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin custom-input {
+    border: none;
+    border-bottom: 3px solid $selection-color;
+    background: transparent !important;
+    color: $text-main-color !important;
+    font-size: $title-text-size !important;
+    padding: 3px 5px !important;
+    transition: 0.4s;
+    &:focus {
+        outline: none;
+        color: $text-main-color;
+        border-bottom: 3px solid $action-color;
+    }
+}
+
+@mixin main-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid $action-color;
+    color: $text-main-color;
+    font-size: 20px;
+    font-family: $font-family;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: $action-color;
+    }
+}
+
+@mixin none-button {
+    padding: 5px 10px;
+    border: 1px solid $text-secondary-color;
+    color: $text-secondary-color;
+    font-size: $title-text-size;
+    border-radius: 6px;
+    user-select: none;
+}
+
+@mixin selector-swicher {
+    display: flex;
+    flex-direction: row;
+    border-radius: 6px;
+    border: 1px solid $action-color;
+    position: relative;
+    height: 34px;
+    .label-selected {
+        background-color: $action-color;
+    }
+    .left {
+        left: -1px;
+    }
+    .right {
+        right: -1px;
+    }
+    .label {
+        width: 133px;
+        height: 24px;
+        position: absolute;
+        top: -1px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        font-size: $main-text-size;
+        color: $text-main-color;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.3s;
+    }
+}
+
+//Remove autocomplite colors
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
+    -webkit-text-fill-color: $text-main-color !important;
+}
+
+input {
+    font-family: $font-family !important;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+//Global classes
+.simple-switcher {
+    position: relative;
+    width: 50px;
+    height: 22px;
+    border: 1px solid $selection-color;
+    border-radius: 18px;
+    transition: 0.3s;
+    background-color: transparent;
+    cursor: pointer;
+    .point {
+        position: absolute;
+        top: 2px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+    .point-false {
+        left: 2px;
+        background-color: $selection-color;
+    }
+    .point-true {
+        left: 30px;
+        background-color: #ffffff;
+    }
+}
+
+.simple-switcher-true {
+    background-color: $action-color !important;
+}
+
+.root-background {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: $background-color;
+}
+
+.load-animation {
+    width: 140px;
+    height: 3px;
+    background: $selection-color;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: '';
+        width: 70px;
+        height: 2px;
+        background-color: $action-color;
+        position: absolute;
+        left: -34px;
+        animation: orangebar 1.4s infinite ease;
+    }
+}
+
+@keyframes orangebar {
+    50% {
+        left: 95px;
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes show-window {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes close-window {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.action-background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.425);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: 1.0s;
+    opacity: 0;
+    animation: show-window 0.6s 1;
+    animation-fill-mode: forwards;
+}
+
+.close-background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.425);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: 1.0s;
+    animation: close-window 0.6s 1;
+    animation-fill-mode: forwards;
+}

@@ -1,0 +1,26 @@
+<div class="view-space">
+    <div class="content">
+        <div class="head">
+            <div class="logo-block">
+                <img src="/assets/img/logo.png" alt="Logo" class="logo-head">
+                <div class="name-head">Business Links</div>
+            </div>
+            <div class="buttons-block">
+                <div (click)="openActionWindow('login')" class="login-button">Вхід</div>
+                <div (click)="openActionWindow('registration')" class="registration-button">Реєстрація</div>
+            </div>
+        </div>
+        <div class="info-block">
+            <img src="/assets/img/chat.png" alt="Logo" class="landing-image first">
+            <div class="landing-info">Business Links - це сучасний та безпечний меседжер!</div>
+        </div>
+        <div class="info-block">
+            <div class="landing-info">Одна платформа - всі пристрої!</div>
+            <img src="/assets/img/laptop.png" alt="Logo" class="landing-image second">
+        </div>
+    </div>
+</div>
+
+<div [ngClass]="{'action-background': !closeAnimation, 'close-background': closeAnimation}" *ngIf="windowAction">
+    <action-window></action-window>
+</div>

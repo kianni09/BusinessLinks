@@ -1,0 +1,20 @@
+<div class="showcase-item-window">
+    <div class="window-head">
+        <div>{{isLogin?'Вхід':'Реєстрація'}}</div>
+        <i (click)="close()" class='fas fa-times icon'></i>
+    </div>
+    <div *ngIf="inputSection" class="input-space">
+
+        <input *ngIf="isLogin" [(ngModel)]="logForm.login" class="input-field" type="text" placeholder="Введіть ваш логін">
+        <input *ngIf="isLogin" [(ngModel)]="logForm.password" class="input-field" type="password" placeholder="Введіть ваш пароль">
+        <div *ngIf="isLogin && !isLoad" (click)="action('login')" class="login-button">Увійти</div>
+
+        <input *ngIf="!isLogin" [(ngModel)]="regForm.firstName" class="input-field" type="text" placeholder="Прізвище" autocomplete="new-password">
+        <input *ngIf="!isLogin" [(ngModel)]="regForm.secondName" class="input-field" type="text" placeholder="І'мя" autocomplete="new-password">
+        <input *ngIf="!isLogin" [(ngModel)]="regForm.login" class="input-field" type="text" placeholder="Логін" autocomplete="new-password">
+        <input *ngIf="!isLogin" [(ngModel)]="regForm.password" class="input-field" type="password" placeholder="Пароль" autocomplete="new-password">
+        <div *ngIf="!isLogin && !isLoad" (click)="action('regestration')" class="login-button">Зареєструватись</div>
+
+        <div *ngIf="isLoad" class="load-animation"></div>
+    </div>
+</div>

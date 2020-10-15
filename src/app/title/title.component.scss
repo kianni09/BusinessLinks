@@ -33,10 +33,15 @@
         }
         .info-block {
             display: flex;
-            flex-direction: row;
             justify-content: space-around;
             width: 100%;
             flex-wrap: wrap;
+        }
+        .info-block-first {
+            flex-direction: row;
+        }
+        .info-block-second {
+            flex-direction: row;
         }
     }
 }
@@ -71,11 +76,11 @@
     height: 300px;
 }
 
-.first {
+.first-image {
     margin-right: 40px;
 }
 
-.second {
+.second-image {
     margin-left: 40px;
 }
 
@@ -84,4 +89,44 @@
     font-size: 25px;
     color: $text-main-color;
     font-family: $font-family;
+}
+
+@media only screen and (max-width: 925px) {
+    .view-space {
+        .content {
+            justify-content: flex-start;
+            .head {
+                flex-direction: column;
+                justify-content: center;
+                .buttons-block {
+                    flex-direction: column;
+                    margin: 20px 0px;
+                    width: 100%;
+                }
+            }
+            .info-block {
+                align-items: center;
+            }
+            .info-block-first {
+                flex-direction: column;
+            }
+            .info-block-second {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+    .name-head {
+        font-size: 30px;
+    }
+    .registration-button {
+        margin-top: 20px;
+    }
+    .landing-image {
+        width: 300px;
+        height: 225px;
+        margin: 20px 0px;
+    }
+    .landing-info {
+        width: 300px;
+    }
 }

@@ -12,10 +12,17 @@
 
         <input *ngIf="!isLogin" [(ngModel)]="regForm.firstName" class="input-field" type="text" placeholder="Прізвище" autocomplete="new-password">
         <input *ngIf="!isLogin" [(ngModel)]="regForm.secondName" class="input-field" type="text" placeholder="І'мя" autocomplete="new-password">
-        <input *ngIf="!isLogin" [(ngModel)]="regForm.login" class="input-field" type="text" placeholder="Логін" autocomplete="new-password">
+        <input *ngIf="!isLogin" [(ngModel)]="regForm.login" (ngModelChange)="loginValidation$.next($event)" class="input-field" type="text" placeholder="Логін" autocomplete="new-password">
+        <div *ngIf="loginValidationMessage" [ngClass]="{'succes-message': loginValidationStatus, 'fail-message': !loginValidationStatus}">{{loginValidationMessage}}</div>
+        <div *ngIf="!isLogin && !loginValidationStatus" class="description-message">Логін повинен бути довжиною від 4 до 16 символів, та містити A-Z та/або 0-9 символи</div>
         <input *ngIf="!isLogin" [(ngModel)]="regForm.password" class="input-field" type="password" placeholder="Пароль" autocomplete="new-password">
-        <div *ngIf="!isLogin && !isLoad" (click)="action('regestration')" class="login-button">Зареєструватись</div>
+        <div *ngIf="!isLogin && passwordValidationMessage" class="fail-message">{{passwordValidationMessage}}</div>
+        <div *ngIf="!isLogin && passwordValidationMessage" class="description-message">Пароль повинен бути довжиною від 6 символів</div>
+        <div *ngIf="!isLogin && !isLoad && registrationVerification" (click)="action('regestration')" class="login-button">Зареєструватись</div>
 
         <div *ngIf="isLoad" class="load-animation"></div>
+    </div>
+    <div *ngIf="!inputSection" [ngClass]="{'result-space': true, 'result-space-done': registrationResult, 'result-space-done': registrationResult, 'result-space-fail': !registrationResult}">
+        {{registrationResult?"Вітаємо! Реєстрація виконана успішно.":"Упс... На жаль, сталась помилка, спробуйте пізніше."}}
     </div>
 </div>

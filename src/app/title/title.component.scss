@@ -16,7 +16,7 @@
         height: calc(100% - 80px);
         width: calc(100% - 80px);
         max-width: 1120px;
-        box-shadow: 20px 0px 15px #131313, -20px 0px 15px #191919;
+        box-shadow: 5px 0px 15px #131313, -5px 0px 15px #191919;
         .head {
             @include line-center;
             justify-content: space-between;

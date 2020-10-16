@@ -4,7 +4,7 @@ import { environment } from '../environments/environment.prod';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { User, loginForm, registrationForm } from './main.models';
+import { User, loginForm, registrationForm, Login } from './main.models';
 
 
 @Injectable({
@@ -23,7 +23,7 @@ export class MainService {
 
   public user: User;
 
-  public loginCheck$ (data: string) {
+  public loginCheck$ (data: Login) {
     return this.http.post( environment.loginCheck, data );
   }
 
@@ -37,6 +37,7 @@ export class MainService {
 
   public loginSucces(user: User) {
     this.user = user;
+    console.log(user);
     this.router.navigate(['main']);
   }
 

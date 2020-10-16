@@ -55,5 +55,34 @@
             font-size: $main-text-size;
             margin-bottom: 20px;
         }
+        .description-message {
+            width: 100%;
+            color: $text-secondary-color;
+            font-size: $addiction-text-size;
+            margin-bottom: 20px;
+        }
+        .fail-message {
+            width: 100%;
+            color: $deccept-color;
+            font-size: $addiction-text-size;
+            margin-bottom: 10px;
+        }
+        .succes-message {
+            width: 100%;
+            color: $accept-color;
+            font-size: $addiction-text-size;
+            margin-bottom: 10px;
+        }
+    }
+    .result-space {
+        width: 100%;
+        font-size: $title-text-size;
+        margin: 20px 0px;
+    }
+    .result-space-done {
+        color: $accept-color;
+    }
+    .result-space-fail {
+        color: $deccept-color;
     }
 }

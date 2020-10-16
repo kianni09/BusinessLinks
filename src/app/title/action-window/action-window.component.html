@@ -22,7 +22,7 @@
 
         <div *ngIf="isLoad" class="load-animation"></div>
     </div>
-    <div *ngIf="!inputSection" [ngClass]="{'result-space': true, 'result-space-done': registrationResult, 'result-space-fail': registrationResult, 'result-space-fail': !registrationResult}">
+    <div *ngIf="!inputSection" [ngClass]="{'result-space': true, 'result-space-done': registrationResult, 'result-space-fail': !registrationResult}">
         {{registrationResult?"Вітаємо! Реєстрація виконана успішно.":"Упс... На жаль, сталась помилка, спробуйте пізніше."}}
     </div>
 </div>

@@ -1,0 +1,54 @@
+@import "../app.component.scss";
+.view-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    .work-space {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        max-width: 1200px;
+        box-shadow: 5px 0px 15px #131313, -5px 0px 15px #191919;
+        .list-root {
+            width: 420px;
+            height: 100%;
+            background-color: $main-color;
+            position: relative;
+            z-index: 10;
+        }
+        .dialogue-root {
+            width: calc(100% - 421px);
+            height: 100%;
+            background-color: $main-color;
+            margin-left: 1px;
+            position: relative;
+            z-index: 100;
+        }
+    }
+}
+
+.dialogue-selected-position {
+    left: 0px !important;
+}
+
+@media only screen and (max-width: 840px) {
+    .view-space {
+        .work-space {
+            .list-root {
+                width: 100%;
+            }
+            .dialogue-root {
+                width: 100%;
+                position: fixed;
+                left: 900px;
+                margin-left: 0px;
+                transition: 0.5s;
+            }
+        }
+    }
+}

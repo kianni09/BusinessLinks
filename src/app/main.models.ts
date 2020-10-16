@@ -2,6 +2,10 @@ export interface Login {
     login: string
 }
 
+export interface UserID {
+    userID: string;
+}
+
 export interface loginForm {
     login: string;
     password: string;

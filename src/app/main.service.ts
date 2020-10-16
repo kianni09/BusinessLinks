@@ -4,7 +4,7 @@ import { environment } from '../environments/environment.prod';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { User, loginForm, registrationForm, Login } from './main.models';
+import { User, loginForm, registrationForm, Login, UserID } from './main.models';
 
 
 @Injectable({
@@ -15,7 +15,20 @@ export class MainService {
     private http: HttpClient,
     private router: Router,
     private location: Location
-  ) {}
+  ) {
+    this.UserLoad();
+  }
+
+  private UserLoad() {
+    if (localStorage.getItem('BusinessLinksUserID')) {
+      let UserID: UserID = { userID: localStorage.getItem('BusinessLinksUserID')};
+      this.http.post( environment.getUser, UserID ).subscribe( (user: User) => {
+        this.loginSucces(user);
+      } ); 
+    } else {
+      this.router.navigate(['title']);
+    }
+  }
 
   public landingWindowAction: boolean = false;
   public closeLandingWindowAnimation: boolean = false;
@@ -38,10 +51,26 @@ export class MainService {
   public loginSucces(user: User) {
     this.user = user;
     console.log(user);
+    localStorage.setItem('BusinessLinksUserID', user.userID);
     this.router.navigate(['main']);
   }
 
+  public selectedDialogue$ = new BehaviorSubject<any>(null);
+  public isDialogueSelected: boolean = false;
+  public dialoguiesList = [
+    {
+      firstName: "Test",
+      secondName: "User",
+      login: "testuser",
+      selected: false
+    }
+  ]
 
 
+  public exit () {
+    this.user = undefined;
+    localStorage.removeItem('BusinessLinksUserID');
+    this.router.navigate(['title']);
+  }
 
 }

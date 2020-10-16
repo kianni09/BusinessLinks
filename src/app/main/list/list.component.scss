@@ -1,0 +1,100 @@
+@import "../../app.component.scss";
+.list-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .user-block {
+        @include line-center;
+        width: calc(100% - 40px);
+        justify-content: space-between;
+        padding: 20px 20px;
+        border-bottom: 1px solid $selection-color;
+        .user-section {
+            @include line-center;
+            .logo {
+                display: block;
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+            }
+            .user-name-block {
+                display: flex;
+                flex-direction: column;
+                .user-name {
+                    font-family: $font-family;
+                    color: $text-main-color;
+                    font-size: $main-text-size;
+                    margin-bottom: 10px;
+                }
+                .user-nickname {
+                    font-family: $font-family;
+                    color: $text-secondary-color;
+                    font-size: $addiction-text-size;
+                    opacity: 0.6;
+                }
+            }
+        }
+        .label-icon {
+            display: block;
+            font-size: 35px;
+            color: $action-color;
+            cursor: pointer;
+        }
+    }
+    .dialoguies-list {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        @include custom-scrollbar;
+        .dialogue-label {
+            @include line-center;
+            justify-content: space-between;
+            width: calc(100% - 40px);
+            padding: 10px 20px;
+            margin: 10px 0px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+                background-color: $selection-color;
+            }
+            .dialogue-name-block {
+                @include line-center;
+                .dialogue-icon {
+                    @include line-center;
+                    justify-content: center;
+                    font-family: $font-family;
+                    color: $text-main-color;
+                    font-size: 20px;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 6px;
+                    background-color: $background-color;
+                    margin-right: 20px;
+                    transition: 0.3s;
+                }
+                .dialogue-name {
+                    font-family: $font-family;
+                    color: $text-main-color;
+                    font-size: $main-text-size;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+    .dialogue-label-selected {
+        .dialogue-name-block {
+            .dialogue-icon {
+                background-color: $action-color !important;
+            }
+            .dialogue-name {
+                color: $action-color !important;
+            }
+        }
+    }
+}

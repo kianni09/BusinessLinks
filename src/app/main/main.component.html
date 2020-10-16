@@ -1,1 +1,10 @@
-<p>main works!</p>
+<div class="view-space">
+    <div class="work-space">
+        <div class="list-root">
+            <dialoguies-list></dialoguies-list>
+        </div>
+        <div [ngClass]="{'dialogue-root': true, 'dialogue-selected-position': isDialogueSelected }">
+            <dialogue></dialogue>
+        </div>
+    </div>
+</div>

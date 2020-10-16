@@ -1,1 +1,23 @@
-<p>list works!</p>
+<div class="list-main">
+
+    <div class="user-block">
+        <div class="user-section">
+            <img src="/assets/img/logo.png" class="logo" alt="logo">
+            <div *ngIf="user" class="user-name-block">
+                <div class="user-name">{{user.firstName + " " + user.secondName}}</div>
+                <div class="user-nickname">{{"@"+user.login}}</div>
+            </div>
+        </div>
+        <i (click)="exit()" class='fas fa-sign-out-alt label-icon'></i>
+    </div>
+
+    <div class="dialoguies-list">
+        <div *ngFor="let dialogue of dialoguiesList; let i=index" (click)="dialogueSelect(i)" [ngClass]="{'dialogue-label': true, 'dialogue-label-selected': dialogue.selected}">
+            <div class="dialogue-name-block">
+                <div class="dialogue-icon">{{dialogue.firstName[0] + dialogue.secondName[0]}}</div>
+                <div class="dialogue-name">{{dialogue.firstName + " " + dialogue.secondName}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>

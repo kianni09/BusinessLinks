@@ -1,1 +1,20 @@
-<p>dialogue works!</p>
+<div class="dialogue-main">
+
+    <div *ngIf="dialogue" class="user-block">
+        <div class="user-section">
+            <i (click)="dialogueClose()" class='fas fa-reply label-icon'></i>
+            <div class="user-name-block">
+                <div class="user-name">{{dialogue.firstName + " " + dialogue.secondName}}</div>
+                <div class="user-nickname">{{"@"+dialogue.login}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="!dialogue" class="none-dialogue">
+        <div class="info">
+            Будь ласка, оберіть діалог, щоб розпочати спілкування
+        </div>
+    </div>
+
+</div>

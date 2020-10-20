@@ -12,7 +12,7 @@
     </div>
 
     <div class="dialoguies-list">
-        <div *ngFor="let dialogue of dialoguiesList; let i=index" (click)="dialogueSelect(i)" [ngClass]="{'dialogue-label': true, 'dialogue-label-selected': dialogue.selected}">
+        <div *ngFor="let dialogue of dialoguiesList; let i=index" (click)="dialogueSelect(i, dialogue.dialogueID)" [ngClass]="{'dialogue-label': true, 'dialogue-label-selected': dialogue.selected}">
             <div class="dialogue-name-block">
                 <div class="dialogue-icon">{{dialogue.firstName[0] + dialogue.secondName[0]}}</div>
                 <div class="dialogue-name">{{dialogue.firstName + " " + dialogue.secondName}}</div>

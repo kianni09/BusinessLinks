@@ -6,6 +6,10 @@ export const environment = {
   getUser: link + "/user/get/",
   loginCheck: link + "/user/login-check/",
   registration: link + "/user/registration/",
-  login: link + "/user/login/"
+  login: link + "/user/login/",
+
+  getDialogues: link + "/user/dialoguies/get/",
+  createDialogues: link + "/user/dialoguies/create/",
+  deleteDialogues: link + "/user/dialoguies/delete/"
 
 };

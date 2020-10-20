@@ -26,3 +26,22 @@ export interface User {
     login: string;
     dialogues: string [];
 }
+
+export interface LastMessage{
+  sender: string;
+  date: Date;
+  isRead: boolean;
+}
+
+export interface DialogueRAW  {
+  dialogueID: string;
+  firstName: string;
+  secondName: string;
+  nickname: string;
+  lastMessage: LastMessage;
+}
+
+export interface Dialogue extends DialogueRAW {
+  //fill(): void;
+  selected: boolean;
+}

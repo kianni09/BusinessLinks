@@ -22,9 +22,13 @@ export class ListComponent implements OnInit {
     return this.mainService.dialoguiesList;
   }
 
-  public dialogueSelect (index: number) {
+  public dialogueSelect (index: number, id: string) {
+    this.mainService.dialoguiesList.forEach((dialogue) => {
+      dialogue.selected = false;
+    });
     this.mainService.isDialogueSelected = true;
     this.mainService.dialoguiesList[index].selected = true;
+    this.mainService.selectedDialogueID = id;
     this.mainService.selectedDialogue$.next(this.mainService.dialoguiesList[index]);
   }
 

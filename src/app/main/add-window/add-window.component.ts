@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-window',
+  selector: 'add-dialogue-window',
   templateUrl: './add-window.component.html',
   styleUrls: ['./add-window.component.scss']
 })

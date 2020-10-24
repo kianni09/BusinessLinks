@@ -87,4 +87,9 @@ export class MainService {
     })
   }
 
+  public addDialogueWindowAction: boolean = false;
+  public closeAddDialogueWindowAnimation: boolean = false;
+  public addDialogueWindow: boolean = true;
+
+
 }

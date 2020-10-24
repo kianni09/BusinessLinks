@@ -8,3 +8,7 @@
         </div>
     </div>
 </div>
+
+<div [ngClass]="{'action-background': !closeAnimation, 'close-background': closeAnimation}" *ngIf="windowAction">
+    <add-dialogue-window></add-dialogue-window>
+</div>

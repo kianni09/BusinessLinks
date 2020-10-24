@@ -18,4 +18,17 @@ export class MainComponent implements OnInit {
     return this.mainService.isDialogueSelected;
   }
 
+  get closeAnimation () {
+    return this.mainService.closeAddDialogueWindowAnimation;
+  }
+
+  get windowAction () {
+    return this.mainService.addDialogueWindowAction;
+  }
+
+  public openActionWindow() {
+    this.mainService.addDialogueWindow = true;
+    this.mainService.addDialogueWindowAction = true;
+  }
+
 }

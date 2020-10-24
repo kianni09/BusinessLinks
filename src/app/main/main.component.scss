@@ -15,17 +15,17 @@
         max-width: 1200px;
         box-shadow: 5px 0px 15px #131313, -5px 0px 15px #191919;
         .list-root {
-            width: 420px;
+            width: 360px;
             height: 100%;
             background-color: $main-color;
             position: relative;
             z-index: 10;
         }
         .dialogue-root {
-            width: calc(100% - 421px);
+            width: calc(100% - 370px);
             height: 100%;
             background-color: $main-color;
-            margin-left: 1px;
+            margin-left: 10px;
             position: relative;
             z-index: 100;
         }

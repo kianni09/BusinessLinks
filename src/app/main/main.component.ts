@@ -26,9 +26,4 @@ export class MainComponent implements OnInit {
     return this.mainService.addDialogueWindowAction;
   }
 
-  public openActionWindow() {
-    this.mainService.addDialogueWindow = true;
-    this.mainService.addDialogueWindowAction = true;
-  }
-
 }

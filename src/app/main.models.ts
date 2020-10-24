@@ -1,3 +1,5 @@
+
+
 export interface Login {
     login: string
 }
@@ -29,7 +31,7 @@ export interface User {
 
 export interface LastMessage{
   sender: string;
-  date: Date;
+  date: Date | string;
   isRead: boolean;
 }
 
@@ -42,6 +44,20 @@ export interface DialogueRAW  {
 }
 
 export interface Dialogue extends DialogueRAW {
-  //fill(): void;
   selected: boolean;
+}
+
+export interface DialogueAdd extends UserID {
+    targetLogin: string;
+    lastMessage: LastMessage
+}
+
+export interface Message {
+    messageID?: string;
+    type: string;
+    date: Date | string;
+    sender: string;
+    answerID: string;
+    dialogueID: string;
+    text: string;
 }

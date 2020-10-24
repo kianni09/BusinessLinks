@@ -11,13 +11,23 @@
         <i (click)="exit()" class='fas fa-sign-out-alt label-icon'></i>
     </div>
 
-    <div class="dialoguies-list">
+    <div *ngIf="dialoguiesList.length > 0" class="dialoguies-list">
         <div *ngFor="let dialogue of dialoguiesList; let i=index" (click)="dialogueSelect(i, dialogue.dialogueID)" [ngClass]="{'dialogue-label': true, 'dialogue-label-selected': dialogue.selected}">
             <div class="dialogue-name-block">
                 <div class="dialogue-icon">{{dialogue.firstName[0] + dialogue.secondName[0]}}</div>
                 <div class="dialogue-name">{{dialogue.firstName + " " + dialogue.secondName}}</div>
             </div>
+            <i (click)="delete(dialogue.dialogueID); $event.stopPropagation()" class='far fa-trash-alt label-icon'></i>
         </div>
+        <div style="width: 100%; height: 70px;"></div>
+    </div>
+
+    <div *ngIf="dialoguiesList.length === 0" class="none-dialogues">
+        <div class="info">Будь ласка, додайте користувача, щоб почати спілкування</div>
+    </div>
+
+    <div (click)="openActionWindow()" class="add-button">
+        <i class='fas fa-user-plus label-icon'></i>
     </div>
 
 </div>

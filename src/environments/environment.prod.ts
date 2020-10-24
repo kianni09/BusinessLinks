@@ -10,6 +10,9 @@ export const environment = {
 
   getDialogues: link + "/user/dialoguies/get/",
   createDialogues: link + "/user/dialoguies/create/",
-  deleteDialogues: link + "/user/dialoguies/delete/"
+  deleteDialogues: link + "/user/dialoguies/delete/",
+
+  getMessages: link + "/dialogue/message-get",
+  newMessage: link + "/dialogue/message-new"
 
 };

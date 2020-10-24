@@ -11,6 +11,25 @@
 
     </div>
 
+    <div *ngIf="dialogue" class="messages-block">
+        <div class="messages">
+            <div *ngFor="let message of messages" [ngClass]="{'outcome-message': message.sender === sender, 'income-message': message.sender !== sender}">
+                <div class="message-text">{{message.text}}</div>
+                <div class="message-date">{{message.date | date:"dd.MM.yyyy - hh:MM"}}</div>
+            </div>
+        </div>
+        <div class="message-input-block">
+            <input [(ngModel)]="message" class="input-field" type="text" placeholder="Введіть ваше повідомлення">
+            <i (click)="sendMessage()" *ngIf="!onSend" class='fas fa-paper-plane send-icon'></i>
+            <div *ngIf="onSend" class="message-sender">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
     <div *ngIf="!dialogue" class="none-dialogue">
         <div class="info">
             Будь ласка, оберіть діалог, щоб почати спілкування

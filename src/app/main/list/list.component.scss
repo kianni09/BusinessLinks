@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
     width: 100%;
     height: 100%;
     .user-block {
@@ -44,6 +45,19 @@
             cursor: pointer;
         }
     }
+    .none-dialogues {
+        @include line-center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        .info {
+            width: 300px;
+            font-family: $font-family;
+            color: $text-secondary-color;
+            font-size: $title-text-size;
+            margin-bottom: 80px;
+        }
+    }
     .dialoguies-list {
         display: flex;
         flex-direction: column;
@@ -62,6 +76,9 @@
             transition: 0.3s;
             &:hover {
                 background-color: $selection-color;
+                .label-icon {
+                    display: block;
+                }
             }
             .dialogue-name-block {
                 @include line-center;
@@ -85,16 +102,44 @@
                     transition: 0.3s;
                 }
             }
+            .label-icon {
+                display: none;
+                font-size: 25px;
+                color: $action-color;
+                cursor: pointer;
+                transition: 0.3s;
+                opacity: 0;
+                animation: show 0.3s 1;
+                animation-fill-mode: forwards;
+            }
+        }
+        .dialogue-label-selected {
+            .dialogue-name-block {
+                .dialogue-icon {
+                    background-color: $action-color !important;
+                }
+                .dialogue-name {
+                    color: $action-color !important;
+                }
+            }
         }
     }
-    .dialogue-label-selected {
-        .dialogue-name-block {
-            .dialogue-icon {
-                background-color: $action-color !important;
-            }
-            .dialogue-name {
-                color: $action-color !important;
-            }
+    .add-button {
+        @include line-center;
+        justify-content: center;
+        background-color: $action-color;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        .label-icon {
+            display: block;
+            font-size: 25px;
+            color: $text-main-color;
+            cursor: pointer;
         }
     }
 }

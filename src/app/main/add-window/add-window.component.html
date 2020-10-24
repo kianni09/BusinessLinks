@@ -1,1 +1,14 @@
-<p>add-window works!</p>
+<div class="item-window">
+    <div class="window-head">
+        <div>Додати співрозмовника</div>
+        <i (click)="close()" class='fas fa-times icon'></i>
+    </div>
+    <div class="input-space">
+        <input [(ngModel)]="login" (ngModelChange)="loginValidation$.next($event)" class="input-field" type="text" placeholder="@someusernickname" autocomplete="new-password">
+        <div *ngIf="loginValidationMessage" [ngClass]="{'succes-message': loginValidationStatus, 'fail-message': !loginValidationStatus}">{{loginValidationMessage}}</div>
+        <div *ngIf="!isLoad && loginValidationStatus" (click)="action()" class="login-button">Додати</div>
+
+        <div *ngIf="isLoad" class="load-animation"></div>
+    </div>
+
+</div>

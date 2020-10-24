@@ -40,6 +40,76 @@
             }
         }
     }
+    .messages-block {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 40px);
+        height: calc(100% - 131px);
+        padding: 20px;
+        .messages {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            width: 100%;
+            height: calc(100% - 60px);
+            position: relative;
+            @include custom-scrollbar;
+            .outcome-message {
+                display: flex;
+                flex-direction: column;
+                width: calc(80% - 40px);
+                border-radius: 6px;
+                background-color: $background-color;
+                margin-bottom: 20px;
+                margin-left: 20%;
+                padding: 20px;
+            }
+            .income-message {
+                display: flex;
+                flex-direction: column;
+                width: calc(80% - 40px);
+                border-radius: 6px;
+                background-color: $selection-color;
+                margin-bottom: 20px;
+                margin-right: 20%;
+                padding: 20px;
+            }
+            .outcome-message,
+            .income-message {
+                .message-text {
+                    font-family: $font-family;
+                    color: $text-main-color;
+                    font-size: $main-text-size;
+                    margin-bottom: 10px;
+                }
+                .message-date {
+                    font-family: $font-family;
+                    color: $text-secondary-color;
+                    font-size: $addiction-text-size;
+                }
+            }
+        }
+        .message-input-block {
+            @include line-center;
+            justify-content: space-between;
+            width: calc(100% - 40px);
+            height: 60px;
+            background-color: $background-color;
+            border-radius: 6px;
+            padding: 0px 20px;
+            .input-field {
+                @include custom-input;
+                width: calc(100% - 60px);
+            }
+            .send-icon {
+                display: block;
+                font-size: 30px;
+                color: $action-color;
+                cursor: pointer;
+                transform: rotate(30deg);
+            }
+        }
+    }
     .none-dialogue {
         @include line-center;
         justify-content: center;
@@ -51,5 +121,51 @@
             color: $text-secondary-color;
             font-size: $title-text-size;
         }
+    }
+}
+
+.message-sender {
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid $action-color;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    .line {
+        position: absolute;
+        width: 28px;
+        height: 2px;
+        background-color: $action-color;
+        transition: 1s;
+        animation: send-animation 1.8s infinite ease;
+        animation-fill-mode: forwards;
+        left: -13px;
+        &:nth-child(1) {
+            top: 6px;
+        }
+        &:nth-child(2) {
+            top: 14px;
+            animation-delay: .1s;
+        }
+        &:nth-child(3) {
+            top: 22px;
+            animation-delay: .3s;
+        }
+        &:nth-child(4) {
+            bottom: 6px;
+            animation-delay: .5s;
+        }
+    }
+}
+
+@keyframes send-animation {
+    0% {
+        left: -13px
+    }
+    50% {
+        left: 21px
+    }
+    100% {
+        left: -13px
     }
 }

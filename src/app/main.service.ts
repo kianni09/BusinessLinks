@@ -133,5 +133,13 @@ export class MainService {
     return this.http.post(environment.newMessage, message);
   }
 
+  public echoMessages$(dialogueID: string) {
+    return Observable.create((observer) => {
+      this.socket.on('messages-' + dialogueID , (result: string) => {
+        observer.next(result);
+      });
+    });
+  }
+
 
 }

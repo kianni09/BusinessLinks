@@ -11,6 +11,7 @@ import { ActionWindowComponent } from './title/action-window/action-window.compo
 import { ListComponent } from './main/list/list.component';
 import { DialogueComponent } from './main/dialogue/dialogue.component';
 import { AddWindowComponent } from './main/add-window/add-window.component';
+import { LoaderComponent } from './addictions/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddWindowComponent } from './main/add-window/add-window.component';
     ActionWindowComponent,
     ListComponent,
     DialogueComponent,
-    AddWindowComponent
+    AddWindowComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

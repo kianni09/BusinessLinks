@@ -89,6 +89,12 @@
                 }
             }
         }
+        .loader {
+            @include line-center;
+            justify-content: center;
+            width: 100%;
+            height: calc(100% - 60px);
+        }
         .message-input-block {
             @include line-center;
             justify-content: space-between;

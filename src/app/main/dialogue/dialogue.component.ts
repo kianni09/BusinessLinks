@@ -29,12 +29,14 @@ export class DialogueComponent implements OnInit, OnDestroy {
               console.log(messages);
               this.messages = messages;
               this.loadMessages = false;
-              this.messagesSubscribe$ = this.mainService.echoMessages$(dialogue.dialogueID).subscribe(
-                (message: Message) => {
+              this.messagesSubscribe$ = this.mainService
+                .echoMessages$(dialogue.dialogueID)
+                .subscribe((message: Message) => {
                   console.log(message);
                   this.messages.unshift(message);
-                }
-               )
+                  if (message.sender != this.sender)
+                    this.mainService.dialogueRead(message.dialogueID);
+                });
             });
         }
       }
@@ -44,7 +46,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   public loadMessages: boolean = false;
 
   ngOnDestroy(): void {
-    this.dialogueSubscribe$.unsubscribe();
+    if (this.dialogueSubscribe$) this.dialogueSubscribe$.unsubscribe();
     this.dialogueClose();
   }
 
@@ -93,7 +95,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   }
 
   public dialogueClose() {
-    this.messagesSubscribe$.unsubscribe();
+    if (this.messagesSubscribe$) this.messagesSubscribe$.unsubscribe();
     this.mainService.isDialogueSelected = false;
     this.mainService.dialoguiesList.forEach((dialogue) => {
       dialogue.selected = false;
@@ -102,6 +104,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
       () => {
         this.dialogue = undefined;
         this.messages = [];
+        this.mainService.selectedDialogueID = '';
         this.mainService.selectedDialogue$.next(null);
       },
       this.innerWidth <= 840 ? 450 : 0

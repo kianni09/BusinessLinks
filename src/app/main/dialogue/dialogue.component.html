@@ -2,7 +2,7 @@
 
     <div *ngIf="dialogue" class="user-block">
         <div class="user-section">
-            <i (click)="dialogueClose()" class='fas fa-reply label-icon'></i>
+            <i (click)="dialogueClose()" class='fa fa-arrow-left label-icon'></i>
             <div class="user-name-block">
                 <div class="user-name">{{dialogue.firstName + " " + dialogue.secondName}}</div>
                 <div class="user-nickname">{{"@"+dialogue.nickname}}</div>
@@ -15,7 +15,7 @@
         <div *ngIf="!loadMessages" class="messages">
             <div *ngFor="let message of messages" [ngClass]="{'outcome-message': message.sender === sender, 'income-message': message.sender !== sender}">
                 <div class="message-text">{{message.text}}</div>
-                <div class="message-date">{{message.date | date:"dd.MM.yyyy - hh:MM"}}</div>
+                <div class="message-date">{{message.date | date:"dd.MM.yyyy - HH:mm"}}</div>
             </div>
         </div>
         <div *ngIf="loadMessages" class="loader">

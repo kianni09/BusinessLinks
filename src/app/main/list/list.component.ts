@@ -1,6 +1,7 @@
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { MainService } from '../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { LastMessage } from '../../main.models';
 
 @Component({
   selector: 'dialoguies-list',
@@ -17,7 +18,7 @@ export class ListComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
 
   }
-  
+
   get user () {
     return this.mainService.user;
   }
@@ -26,7 +27,15 @@ export class ListComponent implements OnInit, AfterContentChecked {
     return this.mainService.dialoguiesList;
   }
 
-  public dialogueSelect (index: number, id: string) {
+  get selectedDialogueID () {
+    return this.mainService.selectedDialogueID;
+  }
+
+  public isNewMessage( lastMessage: LastMessage ): boolean {
+    return lastMessage.sender != this.user.login && !lastMessage.isRead;
+  }
+
+  public dialogueSelect (index: number, id: string, lastMessage: LastMessage) {
     this.mainService.dialoguiesList.forEach((dialogue) => {
       dialogue.selected = false;
     });
@@ -34,6 +43,7 @@ export class ListComponent implements OnInit, AfterContentChecked {
     this.mainService.dialoguiesList[index].selected = true;
     this.mainService.selectedDialogueID = id;
     this.mainService.selectedDialogue$.next(this.mainService.dialoguiesList[index]);
+    if (this.isNewMessage(lastMessage)) this.mainService.dialogueRead(id);
   }
 
   public openActionWindow() {

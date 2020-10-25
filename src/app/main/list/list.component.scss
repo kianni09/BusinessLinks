@@ -40,7 +40,7 @@
         }
         .label-icon {
             display: block;
-            font-size: 35px;
+            font-size: 25px;
             color: $action-color;
             cursor: pointer;
         }
@@ -101,10 +101,22 @@
                     font-size: $main-text-size;
                     transition: 0.3s;
                 }
+                .new-message-icon {
+                    display: block;
+                    font-size: 18px;
+                    color: $action-color;
+                    margin-left: 10px;
+                }
+                .new-message-text {
+                    font-size: 12px;
+                    color: $action-color;
+                    margin-left: 5px;
+                    font-family: $font-family;
+                }
             }
             .label-icon {
                 display: none;
-                font-size: 25px;
+                font-size: 20px;
                 color: $action-color;
                 cursor: pointer;
                 transition: 0.3s;

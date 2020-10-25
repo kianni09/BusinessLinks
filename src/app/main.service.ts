@@ -141,5 +141,9 @@ export class MainService {
     });
   }
 
+  public dialogueRead(dialogueID: string) {
+    this.socket.emit('dialogueRead', dialogueID);
+  }
+
 
 }

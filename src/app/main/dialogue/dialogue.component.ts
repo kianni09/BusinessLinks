@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { MainService } from '../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Message, Dialogue } from '../../main.models';
+import { LocationStrategy } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'dialogue',
@@ -9,7 +11,8 @@ import { Message, Dialogue } from '../../main.models';
   styleUrls: ['./dialogue.component.scss'],
 })
 export class DialogueComponent implements OnInit, OnDestroy {
-  constructor(private mainService: MainService) {}
+  constructor(private mainService: MainService ) {
+  }
 
   public dialogueSubscribe$: Subscription = undefined;
   public messagesSubscribe$: Subscription = undefined;
@@ -88,6 +91,11 @@ export class DialogueComponent implements OnInit, OnDestroy {
     this.dialogueClose();
   }
 
+  @HostListener('document:keydown.enter', ['$event'])
+  onEnterHandler(event: KeyboardEvent) {
+    this.sendMessage();
+  }
+
   private innerWidth: any;
   @HostListener('window:resize', ['$event'])
   private onResize(event) {
@@ -102,6 +110,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
     });
     setTimeout(
       () => {
+        this.message = '';
         this.dialogue = undefined;
         this.messages = [];
         this.mainService.selectedDialogueID = '';

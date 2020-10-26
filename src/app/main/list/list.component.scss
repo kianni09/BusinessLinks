@@ -10,6 +10,7 @@
     .user-block {
         @include line-center;
         width: calc(100% - 40px);
+        height: 50px;
         justify-content: space-between;
         padding: 20px 20px;
         border-bottom: 1px solid $selection-color;
@@ -49,7 +50,7 @@
         @include line-center;
         justify-content: center;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 142px);
         .info {
             width: 300px;
             font-family: $font-family;
@@ -58,99 +59,102 @@
             margin-bottom: 80px;
         }
     }
-    .dialoguies-list {
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: flex-start;
+    .conversations-block {
         width: 100%;
-        height: 100%;
-        @include custom-scrollbar;
-        .dialogue-label {
-            @include line-center;
-            justify-content: space-between;
-            width: calc(100% - 40px);
-            padding: 10px 20px;
-            margin: 10px 0px;
-            cursor: pointer;
-            transition: 0.3s;
-            &:hover {
-                background-color: $selection-color;
-                .label-icon {
-                    display: block;
-                }
-            }
-            .dialogue-name-block {
-                @include line-center;
-                .dialogue-icon {
+        height: calc(100% - 142px);
+        .scroll-block {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            width: 100%;
+            height: 100%;
+            @include custom-scrollbar;
+            .dialoguies-list {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                width: 100%;
+                .dialogue-label {
                     @include line-center;
-                    justify-content: center;
-                    font-family: $font-family;
-                    color: $text-main-color;
-                    font-size: 20px;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 6px;
-                    background-color: $background-color;
-                    margin-right: 20px;
+                    justify-content: space-between;
+                    width: calc(100% - 40px);
+                    padding: 10px 20px;
+                    cursor: pointer;
                     transition: 0.3s;
+                    &:hover {
+                        background-color: $selection-color;
+                        .label-icon {
+                            display: block;
+                        }
+                    }
+                    .dialogue-name-block {
+                        @include line-center;
+                        .dialogue-icon {
+                            @include line-center;
+                            justify-content: center;
+                            font-family: $font-family;
+                            color: $text-main-color;
+                            font-size: 20px;
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 6px;
+                            background-color: $background-color;
+                            margin-right: 20px;
+                            transition: 0.3s;
+                        }
+                        .dialogue-name {
+                            font-family: $font-family;
+                            color: $text-main-color;
+                            font-size: $main-text-size;
+                            transition: 0.3s;
+                        }
+                        .new-message-icon {
+                            display: block;
+                            font-size: 18px;
+                            color: $action-color;
+                            margin-left: 10px;
+                        }
+                        .new-message-text {
+                            font-size: 12px;
+                            color: $action-color;
+                            margin-left: 5px;
+                            font-family: $font-family;
+                        }
+                    }
+                    .label-icon {
+                        display: none;
+                        font-size: 20px;
+                        color: $action-color;
+                        cursor: pointer;
+                        transition: 0.3s;
+                        opacity: 0;
+                        animation: show 0.3s 1;
+                        animation-fill-mode: forwards;
+                    }
                 }
-                .dialogue-name {
-                    font-family: $font-family;
-                    color: $text-main-color;
-                    font-size: $main-text-size;
-                    transition: 0.3s;
-                }
-                .new-message-icon {
-                    display: block;
-                    font-size: 18px;
-                    color: $action-color;
-                    margin-left: 10px;
-                }
-                .new-message-text {
-                    font-size: 12px;
-                    color: $action-color;
-                    margin-left: 5px;
-                    font-family: $font-family;
-                }
-            }
-            .label-icon {
-                display: none;
-                font-size: 20px;
-                color: $action-color;
-                cursor: pointer;
-                transition: 0.3s;
-                opacity: 0;
-                animation: show 0.3s 1;
-                animation-fill-mode: forwards;
-            }
-        }
-        .dialogue-label-selected {
-            .dialogue-name-block {
-                .dialogue-icon {
-                    background-color: $action-color !important;
-                }
-                .dialogue-name {
-                    color: $action-color !important;
+                .dialogue-label-selected {
+                    .dialogue-name-block {
+                        .dialogue-icon {
+                            background-color: $action-color !important;
+                        }
+                        .dialogue-name {
+                            color: $action-color !important;
+                        }
+                    }
                 }
             }
         }
     }
-    .add-button {
+    .action-block {
         @include line-center;
-        justify-content: center;
-        background-color: $action-color;
-        cursor: pointer;
-        width: 60px;
+        width: calc(100% - 40px);
         height: 60px;
-        border-radius: 50%;
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
+        padding: 0px 20px;
+        border-top: 1px solid $selection-color;
         .label-icon {
             display: block;
             font-size: 25px;
-            color: $text-main-color;
+            color: $action-color;
             cursor: pointer;
         }
     }

@@ -9,9 +9,10 @@
     .user-block {
         @include line-center;
         width: calc(100% - 40px);
+        height: 20px;
         justify-content: space-between;
         padding: 20px 20px;
-        border-bottom: 2px solid $selection-color;
+        border-bottom: 1px solid $selection-color;
         background-color: $selection-color;
         .user-section {
             @include line-center;
@@ -25,11 +26,26 @@
             .user-name-block {
                 display: flex;
                 flex-direction: column;
-                .user-name {
-                    font-family: $font-family;
-                    color: $text-main-color;
-                    font-size: $main-text-size;
-                    margin-bottom: 10px;
+                .user-name-status {
+                    @include line-center;
+                    .user-name {
+                        font-family: $font-family;
+                        color: $text-main-color;
+                        font-size: $main-text-size;
+                        margin-bottom: 5px;
+                        margin-right: 10px;
+                    }
+                    .dialogue-online {
+                        font-family: $font-family;
+                        color: $action-color;
+                        font-size: $addiction-text-size;
+                    }
+                    .dialogue-offline {
+                        font-family: $font-family;
+                        color: $text-secondary-color;
+                        font-size: $addiction-text-size;
+                        opacity: 0.5;
+                    }
                 }
                 .user-nickname {
                     font-family: $font-family;
@@ -44,7 +60,7 @@
         display: flex;
         flex-direction: column;
         width: calc(100% - 40px);
-        height: calc(100% - 131px);
+        height: calc(100% - 101px);
         padding: 20px;
         .messages {
             display: flex;
@@ -82,10 +98,22 @@
                     font-size: $main-text-size;
                     margin-bottom: 10px;
                 }
-                .message-date {
-                    font-family: $font-family;
-                    color: $text-secondary-color;
-                    font-size: $addiction-text-size;
+                .message-status {
+                    @include line-center;
+                    width: 100%;
+                    .read-status-icon {
+                        display: block;
+                        color: $action-color;
+                        font-size: $addiction-text-size;
+                        opacity: 0.5;
+                        margin-right: 10px;
+                    }
+                    .message-date {
+                        font-family: $font-family;
+                        color: $text-secondary-color;
+                        font-size: $addiction-text-size;
+                        opacity: 0.5;
+                    }
                 }
             }
         }

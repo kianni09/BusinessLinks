@@ -57,6 +57,15 @@ export class MainService {
     });
   }
 
+  private usersActionsSubscriber$: Subscription;
+  public echoUsersActions$() {
+    return Observable.create((observer) => {
+      this.socket.on('user-actions', (result: string) => {
+        observer.next(result);
+      });
+    });
+  }
+
   public landingWindowAction: boolean = false;
   public closeLandingWindowAnimation: boolean = false;
   public loginWindow: boolean = true;
@@ -75,17 +84,46 @@ export class MainService {
     return this.http.post(environment.login, data);
   }
 
+  public usersOnline: string[] = [];
+  public usersOnline$(data: string[]) {
+    return this.http.post(environment.usersOnline, {userCurrent: this.user.login, usersNicknames: data});
+  }
+
+  public getUsersOnline() {
+    if (this.dialoguiesList.length > 0) {
+      let nicknames = [...this.dialoguiesList.map((dialogue: Dialogue) => {
+        return dialogue.nickname;
+      })]
+      console.log(nicknames)
+      this.usersOnline$(nicknames).subscribe((result: string[]) => {
+        console.log(result);
+        this.usersOnline = result;
+      });
+    }
+  }
+
+  public makeUserOffline() {
+    this.socket.emit('leaveSystem', this.user.login);
+  }
+
   public loginSucces(user: User) {
     this.user = user;
     console.log(user);
+    this.usersActionsSubscriber$ = this.echoUsersActions$().subscribe((result: string) => {
+      console.log(result);
+      this.getUsersOnline();
+    })
+    this.socket.emit('enterSystem', user.login);
     this.dialoguesSubscriber$ = this.echoDialogues$(user.userID).subscribe(
       (data: DialogueRAW[]) => {
         this.dialoguiesList = data
           .map((item: DialogueRAW) => {
-            return {
+            let dialogue: Dialogue = {
               selected: item.dialogueID === this.selectedDialogueID,
               ...item,
-            };
+            }
+            if (dialogue.selected) this.selectedDialogue = dialogue;
+            return dialogue;
           })
           .sort((a, b) => {
             if (a.lastMessage.date > b.lastMessage.date) {
@@ -106,6 +144,7 @@ export class MainService {
             })
             .subscribe();
         }
+        this.getUsersOnline();
       }
     );
     this.getDialogues({ userID: user.userID });
@@ -114,6 +153,7 @@ export class MainService {
   }
 
   public exit() {
+    this.makeUserOffline();
     this.user = undefined;
     this.dialoguesSubscriber$.unsubscribe();
     localStorage.removeItem('BusinessLinksUserID');
@@ -121,6 +161,7 @@ export class MainService {
   }
 
   public selectedDialogue$ = new BehaviorSubject<Dialogue>(null);
+  public selectedDialogue: Dialogue = null;
   public selectedDialogueID: string = '';
   public isDialogueSelected: boolean = false;
   public dialoguiesList: Dialogue[] = [];
@@ -145,6 +186,7 @@ export class MainService {
             }
             return 0;
           });
+        this.getUsersOnline();
       });
   }
 

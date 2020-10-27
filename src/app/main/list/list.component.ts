@@ -23,6 +23,14 @@ export class ListComponent implements OnInit, AfterContentChecked {
     return this.mainService.user;
   }
 
+  get usersOnline (): string[] {
+    return this.mainService.usersOnline;
+  }
+
+  public isUserOnline (userNickname: string): boolean {
+    return this.usersOnline.includes(userNickname);
+  }
+
   get dialoguiesList () {
     return this.mainService.dialoguiesList;
   }
@@ -52,7 +60,7 @@ export class ListComponent implements OnInit, AfterContentChecked {
   }
 
   public delete (id: string) {
-    this.mainService.deleteDialogue$({dialogueID: id}).subscribe( 
+    this.mainService.deleteDialogue$({dialogueID: id}).subscribe(
       (result) => {
         console.log(result)
       }

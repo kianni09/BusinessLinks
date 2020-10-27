@@ -25,7 +25,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
         if (dialogue) {
           this.loadMessages = true;
           console.log(dialogue);
-          this.dialogue = dialogue;
+          this.mainService.selectedDialogue = dialogue;
           this.mainService
             .getMessages$(dialogue.dialogueID)
             .subscribe((messages: Message[]) => {
@@ -57,7 +57,18 @@ export class DialogueComponent implements OnInit, OnDestroy {
     return this.mainService.user.login;
   }
 
-  public dialogue: Dialogue = undefined;
+  get dialogue (): Dialogue {
+    return this.mainService.selectedDialogue;
+  }
+
+  get usersOnline (): string[] {
+    return this.mainService.usersOnline;
+  }
+
+  public isUserOnline (userNickname: string): boolean {
+    return this.usersOnline.includes(userNickname);
+  }
+
   public messages: Message[] = [];
 
   public message: string = '';
@@ -111,10 +122,10 @@ export class DialogueComponent implements OnInit, OnDestroy {
     setTimeout(
       () => {
         this.message = '';
-        this.dialogue = undefined;
         this.messages = [];
         this.mainService.selectedDialogueID = '';
         this.mainService.selectedDialogue$.next(null);
+        this.mainService.selectedDialogue = null;
       },
       this.innerWidth <= 840 ? 450 : 0
     );

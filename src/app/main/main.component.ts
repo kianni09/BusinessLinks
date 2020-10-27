@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { MainService } from '../main.service';
 
 
@@ -7,11 +7,22 @@ import { MainService } from '../main.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   constructor(private mainService: MainService) { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.user) this.mainService.makeUserOffline();
+  }
+
+  get user () {
+    return this.mainService.user;
   }
 
   get isDialogueSelected () {

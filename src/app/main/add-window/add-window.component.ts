@@ -64,7 +64,7 @@ export class AddWindowComponent implements OnInit {
   public ifLoginInclude(login: string) {
     return this.dialogues.some((dialogue) => {
       return dialogue.nickname === login;
-    }) && this.user.login !== login;
+    }) || this.user.login === login;
   }
 
   public action() {

@@ -21,6 +21,11 @@ export class MainComponent implements OnInit, OnDestroy {
     if (this.user) this.mainService.makeUserOffline();
   }
 
+  @HostListener('window:unload')
+  ifBrowserClose () {
+    if (this.user) this.mainService.makeUserOffline();
+  }
+
   get user () {
     return this.mainService.user;
   }

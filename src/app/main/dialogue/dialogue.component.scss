@@ -128,14 +128,18 @@
             @include line-center;
             justify-content: space-between;
             width: calc(100% - 40px);
-            height: 60px;
+            //height: 60px;
             background-color: $background-color;
             border-radius: 6px;
-            padding: 0px 20px;
+            padding: 20px 20px;
             position: relative;
             .input-field {
                 @include custom-input;
+                @include custom-scrollbar;
                 width: calc(100% - 60px);
+                font-family: $font-family;
+                resize: none;
+                margin: 7px 0px;
             }
             .send-icon {
                 display: block;

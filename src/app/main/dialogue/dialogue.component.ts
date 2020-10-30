@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { MainService } from '../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Message, Dialogue } from '../../main.models';
@@ -88,38 +88,35 @@ export class DialogueComponent implements OnInit, OnDestroy {
       text: this.message,
     };
     this.message = '';
+    this.inputHeight = 25;
     this.mainService.newMessage$(message).subscribe((result: boolean) => {
       if (result) {
         setTimeout(() => {
+          this.message = '';
           this.onSend = false;
         }, 700);
       }
     });
   }
 
-  public getInputHeight(widthInput: number, widthMessage: number): number {
-    console.log('Message width: ' + (widthMessage + 15))
-    console.log('Input width: ' + widthInput)
-    console.log((widthInput%(widthMessage + 15)) < widthInput / 2)
-    let k:number =  (widthMessage + 15) / widthInput;
-    let l: boolean = (widthInput%(widthMessage + 15)) > Math.round(widthInput / 2)
-    let lineHeight = 60
+  public inputHeight: number = 25;
+  public getInputHeight(widthInput: number, widthMessage: number): void {
+    let k:number =  +((widthMessage + 45) / widthInput).toString().split('.')[0]
+    let lineHeight = 25
     if (k < 1) {
-      return lineHeight
+      this.inputHeight = lineHeight;
     } else {
-      return l ? 60 * Math.round(k) : 60 * (Math.round(k) + 1);
+      this.inputHeight = k < 4 ? lineHeight * (k + 1) : lineHeight * 5;
     }
   }
 
   @HostListener('document:keydown.escape', ['$event'])
-  onKeydownHandler(event: KeyboardEvent) {
+  onEscapeHandler(event: KeyboardEvent) {
     this.dialogueClose();
   }
 
   @HostListener('document:keydown.enter', ['$event'])
   onEnterHandler(event: KeyboardEvent) {
-    let n = 47%12
-    console.log(n)
     this.sendMessage();
   }
 
@@ -138,6 +135,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
     setTimeout(
       () => {
         this.message = '';
+        this.inputHeight = 25;
         this.messages = [];
         this.mainService.selectedDialogueID = '';
         this.mainService.selectedDialogue$.next(null);

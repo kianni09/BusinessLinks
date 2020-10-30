@@ -39,6 +39,16 @@ $workspace-maxwidth: 1920px;
     }
 }
 
+.hiden-message {
+    position: fixed;
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
+    font-size: $title-text-size !important;
+    font-family: $font-family;
+}
+
 @mixin line-center {
     display: flex;
     flex-direction: row;

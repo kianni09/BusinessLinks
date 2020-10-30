@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MainService } from '../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Message, Dialogue } from '../../main.models';
@@ -11,7 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./dialogue.component.scss'],
 })
 export class DialogueComponent implements OnInit, OnDestroy {
-  constructor(private mainService: MainService ) {
+  constructor(private mainService: MainService) {
   }
 
   public dialogueSubscribe$: Subscription = undefined;
@@ -57,15 +57,15 @@ export class DialogueComponent implements OnInit, OnDestroy {
     return this.mainService.user.login;
   }
 
-  get dialogue (): Dialogue {
+  get dialogue(): Dialogue {
     return this.mainService.selectedDialogue;
   }
 
-  get usersOnline (): string[] {
+  get usersOnline(): string[] {
     return this.mainService.usersOnline;
   }
 
-  public isUserOnline (userNickname: string): boolean {
+  public isUserOnline(userNickname: string): boolean {
     return this.usersOnline.includes(userNickname);
   }
 
@@ -97,6 +97,20 @@ export class DialogueComponent implements OnInit, OnDestroy {
     });
   }
 
+  public getInputHeight(widthInput: number, widthMessage: number): number {
+    console.log('Message width: ' + (widthMessage + 15))
+    console.log('Input width: ' + widthInput)
+    console.log((widthInput%(widthMessage + 15)) < widthInput / 2)
+    let k:number =  (widthMessage + 15) / widthInput;
+    let l: boolean = (widthInput%(widthMessage + 15)) > Math.round(widthInput / 2)
+    let lineHeight = 60
+    if (k < 1) {
+      return lineHeight
+    } else {
+      return l ? 60 * Math.round(k) : 60 * (Math.round(k) + 1);
+    }
+  }
+
   @HostListener('document:keydown.escape', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
     this.dialogueClose();
@@ -104,6 +118,8 @@ export class DialogueComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown.enter', ['$event'])
   onEnterHandler(event: KeyboardEvent) {
+    let n = 47%12
+    console.log(n)
     this.sendMessage();
   }
 

@@ -31,8 +31,9 @@
         <div *ngIf="loadMessages" class="loader">
             <loader></loader>
         </div>
-        <div class="message-input-block">
-            <input [(ngModel)]="message" class="input-field" type="text" placeholder="Введіть ваше повідомлення">
+        <div class="message-input-block" [ngStyle]="{'height': getInputHeight(mInput.offsetWidth, hidenMessage.offsetWidth) + 'px'}">
+            <input #mInput [(ngModel)]="message" class="input-field" type="text" placeholder="Введіть ваше повідомлення">
+            <div #hidenMessage class="hiden-message">{{message}}</div>
             <i (click)="sendMessage()" *ngIf="!onSend" class='fas fa-paper-plane send-icon'></i>
             <div *ngIf="onSend" class="message-sender">
                 <div class="line"></div>

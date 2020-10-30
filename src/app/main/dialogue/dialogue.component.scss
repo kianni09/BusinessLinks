@@ -97,6 +97,7 @@
                     color: $text-main-color;
                     font-size: $main-text-size;
                     margin-bottom: 10px;
+                    word-wrap: break-word;
                 }
                 .message-status {
                     @include line-center;
@@ -131,6 +132,7 @@
             background-color: $background-color;
             border-radius: 6px;
             padding: 0px 20px;
+            position: relative;
             .input-field {
                 @include custom-input;
                 width: calc(100% - 60px);

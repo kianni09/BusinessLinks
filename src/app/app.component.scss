@@ -261,6 +261,12 @@ input[type=number] {
     animation-fill-mode: forwards;
 }
 
+@mixin close-animation {
+    transition: 1.0s;
+    animation: close-window 0.6s 1;
+    animation-fill-mode: forwards;
+}
+
 .close-background {
     display: flex;
     flex-direction: row;
@@ -274,7 +280,66 @@ input[type=number] {
     background-color: rgba(0, 0, 0, 0.425);
     backdrop-filter: blur(5px);
     z-index: 1000;
-    transition: 1.0s;
-    animation: close-window 0.6s 1;
-    animation-fill-mode: forwards;
+    @include close-animation;
+}
+
+$size: 300px;
+$clr-bg: #272324;
+$clr1: #bbbb88;
+$clr2: #ccc68d;
+$clr3: #eedd99;
+$clr4: #eec290;
+$clr5: #eeaa88;
+.animation-back {
+    @include line-center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000000;
+    top: 0px;
+    left: 0px;
+    background-color: $background-color;
+    .spinner {
+        $animation-duration: 1000ms;
+        width: $size;
+        height: $size;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        .spinner-item {
+            width: $size / 20;
+            height: 80%;
+            animation: spinner1 $animation-duration ease-in-out infinite;
+        }
+        @keyframes spinner1 {
+            50% {
+                transform: scaleY(0.25);
+            }
+        }
+        .spinner-item:nth-child(1) {
+            background-color: $clr1;
+            animation-delay: $animation-duration / 10;
+        }
+        .spinner-item:nth-child(2) {
+            background-color: $clr5;
+            animation-delay: $animation-duration / 10 * -1;
+        }
+        .spinner-item:nth-child(3) {
+            background-color: $clr3;
+            animation-delay: $animation-duration / 10 * -2;
+        }
+        .spinner-item:nth-child(4) {
+            background-color: $clr4;
+            animation-delay: $animation-duration / 10 * -3;
+        }
+        .spinner-item:nth-child(5) {
+            background-color: $clr2;
+            animation-delay: $animation-duration / 10 * -3;
+        }
+    }
+}
+
+.animation-back-close {
+    @include close-animation;
 }

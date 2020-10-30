@@ -35,8 +35,12 @@ export class MainService {
   private url = 'http://95.181.178.7:1313';
   private socket = io(this.url, { transport: ['websocket'] });
 
+  public preLoad: boolean = false;
+  public preLoadClose: boolean = false;
+
   private UserLoad() {
     if (localStorage.getItem('BusinessLinksUserID')) {
+      this.preLoad = true;
       let UserID: UserID = {
         userID: localStorage.getItem('BusinessLinksUserID'),
       };
@@ -150,6 +154,12 @@ export class MainService {
     this.getDialogues({ userID: user.userID });
     localStorage.setItem('BusinessLinksUserID', user.userID);
     this.router.navigate(['main']);
+    this.preLoadClose = true;
+    setTimeout( () => {
+      this.preLoad = false;
+      this.preLoadClose = false;
+    }, 590 );
+
   }
 
   public exit() {

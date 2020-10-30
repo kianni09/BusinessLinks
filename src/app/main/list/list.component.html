@@ -15,9 +15,9 @@
         <i (click)="openActionWindow()" class='fas fa-user-plus label-icon'></i>
     </div>
 
-    <div class="conversations-block">
+    <div *ngIf="dialoguiesList.length > 0" class="conversations-block">
         <div class="scroll-block">
-            <div *ngIf="dialoguiesList.length > 0" class="dialoguies-list">
+            <div class="dialoguies-list">
                 <div *ngFor="let dialogue of dialoguiesList; let i=index" (click)="dialogueSelect(i, dialogue.dialogueID, dialogue.lastMessage)" [ngClass]="{'dialogue-label': true, 'dialogue-label-selected': dialogue.selected}">
                     <div class="dialogue-name-block">
                         <div class="dialogue-icon">{{dialogue.firstName[0] + dialogue.secondName[0]}}</div>

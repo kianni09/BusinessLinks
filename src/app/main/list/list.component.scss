@@ -14,6 +14,7 @@
         justify-content: space-between;
         padding: 20px 20px;
         border-bottom: 1px solid $selection-color;
+        background-color: $main-color;
         .user-section {
             @include line-center;
             .logo {
@@ -79,8 +80,10 @@
                     justify-content: space-between;
                     width: calc(100% - 40px);
                     padding: 10px 20px;
+                    margin-top: 5px;
                     cursor: pointer;
                     transition: 0.3s;
+                    background-color: $main-color;
                     &:hover {
                         background-color: $selection-color;
                         .label-icon {
@@ -167,6 +170,7 @@
         height: 60px;
         padding: 0px 20px;
         border-bottom: 1px solid $selection-color;
+        background-color: $main-color;
         .label-icon {
             display: block;
             font-size: 25px;

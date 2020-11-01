@@ -17,14 +17,14 @@
         .list-root {
             width: 360px;
             height: 100%;
-            background-color: $main-color;
+            background-color: $main-color-transp;
             position: relative;
             z-index: 10;
         }
         .dialogue-root {
             width: calc(100% - 370px);
             height: 100%;
-            background-color: $main-color;
+            background-color: $main-color-transp;
             margin-left: 10px;
             position: relative;
             z-index: 100;

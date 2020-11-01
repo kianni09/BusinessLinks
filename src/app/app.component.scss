@@ -1,6 +1,7 @@
 //Colors variables
 $background-color: #1a1a1a; // 1b212c
 $main-color: #161616; // 1a1a1a
+$main-color-transp: #1616164b;
 $selection-color: #353d4b; //# 283851
 $selection-color-second: #292a31;
 $action-color: #eb6e3d; // eb6e3d
@@ -296,11 +297,11 @@ input[type=number] {
 
 $size: 300px;
 $clr-bg: #272324;
-$clr1: #bbbb88;
-$clr2: #ccc68d;
-$clr3: #eedd99;
-$clr4: #eec290;
-$clr5: #eeaa88;
+$clr1: #d0241d;
+$clr2: #ffcc7b;
+$clr3: #61c589;
+$clr4: #40cde8;
+$clr5: #ff805d;
 .animation-back {
     @include line-center;
     justify-content: center;
@@ -321,6 +322,7 @@ $clr5: #eeaa88;
         .spinner-item {
             width: $size / 20;
             height: 80%;
+            border-radius: 6px;
             animation: spinner1 $animation-duration ease-in-out infinite;
         }
         @keyframes spinner1 {
@@ -346,7 +348,7 @@ $clr5: #eeaa88;
         }
         .spinner-item:nth-child(5) {
             background-color: $clr2;
-            animation-delay: $animation-duration / 10 * -3;
+            animation-delay: $animation-duration / 10 * -4;
         }
     }
 }

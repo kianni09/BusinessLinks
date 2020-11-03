@@ -33,9 +33,6 @@
         </div>
         <div class="message-input-block">
             <textarea #mInput [(ngModel)]="message" class="input-field" [ngStyle]="{'height': inputHeight + 'px'}" (keydown)="getInputHeight(mInput.offsetWidth, hidenMessage.offsetWidth)" placeholder="Повідомлення" (keydown.enter)="$event.preventDefault()"></textarea>
-            <!--
-          <input #mInput [(ngModel)]="message" class="input-field" type="text" placeholder="Введіть ваше повідомлення">
-            -->
             <div #hidenMessage class="hiden-message">{{message}}</div>
             <i (click)="sendMessage()" *ngIf="!onSend" class='fas fa-paper-plane send-icon'></i>
             <div *ngIf="onSend" class="message-sender">

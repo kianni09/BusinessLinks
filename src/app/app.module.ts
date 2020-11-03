@@ -12,6 +12,8 @@ import { ListComponent } from './main/list/list.component';
 import { DialogueComponent } from './main/dialogue/dialogue.component';
 import { AddWindowComponent } from './main/add-window/add-window.component';
 import { LoaderComponent } from './addictions/loader/loader.component';
+import { MessengerComponent } from './main/messenger/messenger.component';
+import { MenuComponent } from './main/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LoaderComponent } from './addictions/loader/loader.component';
     ListComponent,
     DialogueComponent,
     AddWindowComponent,
-    LoaderComponent
+    LoaderComponent,
+    MessengerComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

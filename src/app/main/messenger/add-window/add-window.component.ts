@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from '../../main.service';
+import { MainService } from '../../../main.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { LastMessage, Dialogue, DialogueAdd } from '../../main.models';
+import { LastMessage, Dialogue, DialogueAdd } from '../../../main.models';
 
 @Component({
   selector: 'add-dialogue-window',

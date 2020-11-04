@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { MainService } from '../../main.service';
+import { MainService } from '../../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { Message, Dialogue } from '../../main.models';
+import { Message, Dialogue } from '../../../main.models';
 import { LocationStrategy } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 

@@ -30,16 +30,4 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.mainService.user;
   }
 
-  get isDialogueSelected () {
-    return this.mainService.isDialogueSelected;
-  }
-
-  get closeAnimation () {
-    return this.mainService.closeAddDialogueWindowAnimation;
-  }
-
-  get windowAction () {
-    return this.mainService.addDialogueWindowAction;
-  }
-
 }

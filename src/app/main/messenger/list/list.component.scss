@@ -1,4 +1,4 @@
-@import "../../app.component.scss";
+@import "../../../app.component.scss";
 .list-main {
     display: flex;
     flex-direction: column;
@@ -60,9 +60,27 @@
             margin-bottom: 80px;
         }
     }
+    .action-block {
+        @include line-center;
+        justify-content: flex-end;
+        width: calc(100% - 40px);
+        height: 20px;
+        padding: 20px 20px;
+        border-bottom: 1px solid $selection-color;
+        background-color: $main-color;
+        position: relative;
+        .label-icon {
+            display: block;
+            font-size: 25px;
+            color: $action-color;
+            cursor: pointer;
+            position: absolute;
+            z-index: 100;
+        }
+    }
     .conversations-block {
         width: 100%;
-        height: calc(100% - 142px);
+        height: calc(100% - 61px);
         .scroll-block {
             display: flex;
             flex-direction: column;
@@ -162,20 +180,6 @@
                     }
                 }
             }
-        }
-    }
-    .action-block {
-        @include line-center;
-        width: calc(100% - 40px);
-        height: 60px;
-        padding: 0px 20px;
-        border-bottom: 1px solid $selection-color;
-        background-color: $main-color;
-        .label-icon {
-            display: block;
-            font-size: 25px;
-            color: $action-color;
-            cursor: pointer;
         }
     }
 }

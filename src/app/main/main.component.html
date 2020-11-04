@@ -1,14 +1,9 @@
 <div class="view-space">
     <div class="work-space">
-        <div class="list-root">
-            <dialoguies-list></dialoguies-list>
+        <div class="menu-label">
+            <menu-label></menu-label>
         </div>
-        <div [ngClass]="{'dialogue-root': true, 'dialogue-selected-position': isDialogueSelected }">
-            <dialogue></dialogue>
-        </div>
-    </div>
-</div>
 
-<div [ngClass]="{'action-background': !closeAnimation, 'close-background': closeAnimation}" *ngIf="windowAction">
-    <add-dialogue-window></add-dialogue-window>
+        <router-outlet></router-outlet>
+    </div>
 </div>

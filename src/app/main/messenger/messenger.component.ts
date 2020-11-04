@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { MainService } from 'src/app/main.service';
 
 @Component({
   selector: 'messenger',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessengerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit(): void {
+  }
+
+  get user () {
+    return this.mainService.user;
+  }
+
+  get isDialogueSelected () {
+    return this.mainService.isDialogueSelected;
+  }
+
+  get closeAnimation () {
+    return this.mainService.closeAddDialogueWindowAnimation;
+  }
+
+  get windowAction () {
+    return this.mainService.addDialogueWindowAction;
   }
 
 }

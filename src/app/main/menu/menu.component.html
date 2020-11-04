@@ -1,1 +1,20 @@
-<p>menu works!</p>
+<div (clickOutside)="menuOff()" class="menu-root">
+    <div class="menu-labels">
+        <div (click)="menuAction()" class="menu-icon"></div>
+        <div class="main-name">Bussines Space</div>
+    </div>
+    <div *ngIf="menuStatus" class="menu-back"></div>
+    <div [ngClass]="{'menu-template': true, 'menu-template-on': menuStatus, 'menu-template-off': !menuStatus}">
+        <div class="user-block">
+            <div class="user-section">
+                <div class="dialogue-icon">{{user.firstName[0] + user.secondName[0]}}</div>
+                <div *ngIf="user" class="user-name-block">
+                    <div class="user-name">{{user.firstName + " " + user.secondName}}</div>
+                    <div class="user-nickname">{{"@"+user.login}}</div>
+                </div>
+            </div>
+            <i (click)="exit()" class='fas fa-door-open label-icon'></i>
+        </div>
+    </div>
+
+</div>

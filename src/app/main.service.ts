@@ -38,6 +38,8 @@ export class MainService {
   public preLoad: boolean = false;
   public preLoadClose: boolean = false;
 
+  public menuStatus: boolean = false;
+
   private UserLoad() {
     if (localStorage.getItem('BusinessLinksUserID')) {
       this.preLoad = true;
@@ -153,7 +155,7 @@ export class MainService {
     );
     this.getDialogues({ userID: user.userID });
     localStorage.setItem('BusinessLinksUserID', user.userID);
-    this.router.navigate(['main']);
+    this.router.navigate(['main/messenger']);
     this.preLoadClose = true;
     setTimeout( () => {
       this.preLoad = false;
@@ -165,6 +167,7 @@ export class MainService {
   public exit() {
     this.makeUserOffline();
     this.user = undefined;
+    this.menuStatus = false;
     this.dialoguesSubscriber$.unsubscribe();
     localStorage.removeItem('BusinessLinksUserID');
     this.router.navigate(['title']);

@@ -1,7 +1,7 @@
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
-import { MainService } from '../../main.service';
+import { MainService } from '../../../main.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { LastMessage } from '../../main.models';
+import { LastMessage } from '../../../main.models';
 
 @Component({
   selector: 'dialoguies-list',

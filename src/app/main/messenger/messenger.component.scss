@@ -2,11 +2,13 @@
 .messenger-space {
     height: 100%;
     width: 100%;
+    position: relative;
+    z-index: 1;
     .work-space {
         display: flex;
         flex-direction: row;
         position: relative;
-        z-index: 1;
+        z-index: 2;
         height: 100%;
         width: 100%;
         max-width: 1200px;
@@ -14,17 +16,17 @@
         .list-root {
             width: 360px;
             height: 100%;
-            background-color: $main-color-transp;
+            background-color: $main-color;
             position: relative;
             z-index: 10;
         }
         .dialogue-root {
-            width: calc(100% - 370px);
+            width: calc(100% - 362px);
             height: 100%;
-            background-color: $main-color-transp;
-            margin-left: 10px;
+            background-color: $main-color;
+            margin-left: 2px;
             position: relative;
-            z-index: 10000;
+            z-index: 10000 !important;
         }
     }
 }
@@ -45,7 +47,6 @@
                 left: 900px;
                 margin-left: 0px;
                 transition: 0.5s;
-                background-color: $main-color;
             }
         }
     }

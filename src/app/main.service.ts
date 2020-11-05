@@ -33,7 +33,13 @@ export class MainService {
   }
 
   private url = 'http://95.181.178.7:1313';
-  private socket = io(this.url, { transport: ['websocket'] });
+  private socket = io(this.url, {
+    reconnection: true,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    reconnectionAttempts: Infinity,
+    transport: ['websocket']
+  });
 
   public preLoad: boolean = false;
   public preLoadClose: boolean = false;
@@ -92,7 +98,7 @@ export class MainService {
 
   public usersOnline: string[] = [];
   public usersOnline$(data: string[]) {
-    return this.http.post(environment.usersOnline, {userCurrent: this.user.login, usersNicknames: data});
+    return this.http.post(environment.usersOnline, { userCurrent: this.user.login, usersNicknames: data });
   }
 
   public getUsersOnline() {
@@ -157,10 +163,10 @@ export class MainService {
     localStorage.setItem('BusinessLinksUserID', user.userID);
     this.router.navigate(['main/messenger']);
     this.preLoadClose = true;
-    setTimeout( () => {
+    setTimeout(() => {
       this.preLoad = false;
       this.preLoadClose = false;
-    }, 590 );
+    }, 590);
 
   }
 

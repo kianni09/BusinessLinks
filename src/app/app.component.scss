@@ -18,6 +18,13 @@ $addiction-text-size: 14px;
 //Size variables
 $workspace-maxwidth: 1920px;
 //Mixins sector
+@mixin flex($dir, $jus, $ai) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jus;
+    align-items: $ai;
+}
+
 @mixin show-animation {
     opacity: 0;
     animation: show 1.0s 1;

@@ -1,19 +1,27 @@
 <div (clickOutside)="menuOff()" class="menu-root">
     <div class="menu-labels">
-        <div (click)="menuAction()" class="menu-icon"></div>
-        <div class="main-name">Bussines Space</div>
+        <div (click)="menuAction()" [ngClass]="{'menu-icon': !menuStatus, 'close-icon': menuStatus}">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <div class="main-name">{{!menuStatus ? menuHeaders[path] : 'Bussines Space'}}</div>
     </div>
-    <div *ngIf="menuStatus" class="menu-back"></div>
+    <div *ngIf="menuBackBlock" [ngClass]="{'menu-back': true, 'menu-back-hide': menuBackBlockHide}"></div>
     <div [ngClass]="{'menu-template': true, 'menu-template-on': menuStatus, 'menu-template-off': !menuStatus}">
-        <div class="user-block">
+        <div *ngIf="user" class="user-block">
             <div class="user-section">
-                <div class="dialogue-icon">{{user.firstName[0] + user.secondName[0]}}</div>
+                <div class="user-icon">{{user.firstName[0] + user.secondName[0]}}</div>
                 <div *ngIf="user" class="user-name-block">
                     <div class="user-name">{{user.firstName + " " + user.secondName}}</div>
                     <div class="user-nickname">{{"@"+user.login}}</div>
                 </div>
             </div>
             <i (click)="exit()" class='fas fa-door-open label-icon'></i>
+        </div>
+        <div (click)="goTo('messenger')" class="menu-label">
+            <i [ngClass]="{'far': true, 'fa-comment-alt': true, 'menu-icon': true, 'selected': 'messenger'=== path}"></i>
+            <div [ngClass]="{'menu-name': true, 'selected': 'messenger' === path}">Зв'язки</div>
         </div>
     </div>
 

@@ -1,18 +1,13 @@
 <div class="list-main">
-    <!--
-    <div class="user-block">
-        <div class="user-section">
-            <img src="/assets/img/logo.png" class="logo" alt="logo">
-            <div *ngIf="user" class="user-name-block">
-                <div class="user-name">{{user.firstName + " " + user.secondName}}</div>
-                <div class="user-nickname">{{"@"+user.login}}</div>
-            </div>
-        </div>
-        <i (click)="exit()" class='fas fa-door-open label-icon'></i>
-    </div>-->
 
     <div class="action-block">
-        <i (click)="openActionWindow()" class='fas fa-user-plus label-icon'></i>
+        <div class="menu-label">
+            <menu-label></menu-label>
+        </div>
+        <div class="action-icons">
+            <i (click)="openActionWindow()" class='fas fa-user-plus label-icon'></i>
+        </div>
+
     </div>
 
     <div *ngIf="dialoguiesList.length > 0" class="conversations-block">

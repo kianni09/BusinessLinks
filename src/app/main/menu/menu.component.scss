@@ -7,102 +7,155 @@
     z-index: 1;
     .menu-labels {
         @include line-center;
-        justify-content: space-between;
         width: 100%;
         height: 100%;
         position: relative;
         z-index: 10;
-        .menu-icon {
-            width: 45px;
-            height: 45px;
-            background-color: green;
+        .menu-icon,
+        .close-icon {
             cursor: pointer;
-            transition: 0.3s;
-            &:hover {
-                height: 50px;
+            margin-right: 15px;
+            .line {
+                width: 30px;
+                height: 3px;
+                background-color: $action-color;
+                margin: 5px 0px;
+                transition: all 0.3s ease;
             }
         }
-        .main-name {
+        .menu-icon {
+            &:hover {
+                .line:nth-child(2) {
+                    margin: 7px 0px;
+                }
+            }
+        }
+        .close-icon {
+            .line:nth-child(1) {
+                transform: translatey(8px) rotate(45deg);
+            }
+            .line:nth-child(2) {
+                transform: scale(0);
+            }
+            .line:nth-child(3) {
+                transform: translatey(-8px) rotate(-45deg);
+            }
+        }
+    }
+    .main-name {
+        font-family: $font-family;
+        color: $text-main-color;
+        font-size: $title-text-size;
+    }
+}
+
+.menu-back {
+    position: absolute;
+    z-index: 7;
+    width: 360px;
+    height: 60px;
+    left: 0px;
+    top: 0px;
+    background-color: $selection-color;
+    animation: show-window 0.2s 1;
+}
+
+.menu-back-hide {
+    transition: 0.2s;
+    top: -60px;
+}
+
+.menu-template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    height: calc(500px - 80px);
+    background-color: $selection-color;
+    position: absolute;
+    z-index: 5;
+    transition: 0.4s;
+    left: 0px;
+    padding: 60px 0px 20px 00px;
+    .user-block {
+        @include line-center;
+        width: calc(100% - 40px);
+        height: 20px;
+        justify-content: space-between;
+        padding: 20px 20px;
+        border-bottom: 1px solid $background-color;
+        .user-section {
+            @include line-center;
+            .user-icon {
+                @include line-center;
+                justify-content: center;
+                font-family: $font-family;
+                color: $text-main-color;
+                font-size: 25px;
+                width: 50px;
+                height: 50px;
+                border-radius: 6px;
+                background-color: $selection-color-second;
+                margin-right: 10px;
+                transition: 0.3s;
+            }
+            .user-name-block {
+                display: flex;
+                flex-direction: column;
+                .user-name {
+                    font-family: $font-family;
+                    color: $text-main-color;
+                    font-size: $main-text-size;
+                    margin-bottom: 5px;
+                }
+                .user-nickname {
+                    font-family: $font-family;
+                    color: $text-secondary-color;
+                    font-size: $addiction-text-size;
+                    opacity: 0.6;
+                }
+            }
+        }
+        .label-icon {
+            display: block;
+            font-size: 25px;
+            color: $action-color;
+            cursor: pointer;
+        }
+    }
+    .menu-label {
+        @include line-center;
+        width: calc(100% - 60px);
+        height: 20px;
+        padding: 20px 30px;
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+            background-color: $selection-color-second;
+        }
+        .menu-icon {
+            display: block;
+            font-size: 25px;
+            color: $text-main-color;
+            margin-right: 20px;
+        }
+        .menu-name {
             font-family: $font-family;
             color: $text-main-color;
             font-size: $title-text-size;
         }
-    }
-    .menu-back {
-        position: absolute;
-        z-index: 7;
-        width: 360px;
-        height: 60px;
-        left: 0px;
-        top: 0px;
-        background-color: $selection-color;
-        animation: show-window 0.2s 1;
-    }
-    .menu-template {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 360px;
-        height: calc(500px - 80px);
-        background-color: $selection-color;
-        position: absolute;
-        z-index: 5;
-        transition: 0.6s;
-        left: 0px;
-        padding: 60px 0px 20px 00px;
-        .user-block {
-            @include line-center;
-            width: calc(100% - 40px);
-            height: 20px;
-            justify-content: space-between;
-            padding: 20px 20px;
-            border-bottom: 1px solid $background-color;
-            .user-section {
-                @include line-center;
-                .dialogue-icon {
-                    @include line-center;
-                    justify-content: center;
-                    font-family: $font-family;
-                    color: $text-main-color;
-                    font-size: $title-text-size;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 6px;
-                    background-color: $selection-color-second;
-                    margin-right: 10px;
-                    transition: 0.3s;
-                }
-                .user-name-block {
-                    display: flex;
-                    flex-direction: column;
-                    .user-name {
-                        font-family: $font-family;
-                        color: $text-main-color;
-                        font-size: $main-text-size;
-                        margin-bottom: 5px;
-                    }
-                    .user-nickname {
-                        font-family: $font-family;
-                        color: $text-secondary-color;
-                        font-size: $addiction-text-size;
-                        opacity: 0.6;
-                    }
-                }
-            }
-            .label-icon {
-                display: block;
-                font-size: 25px;
-                color: $action-color;
-                cursor: pointer;
-            }
+        .selected {
+            color: $action-color;
         }
     }
-    .menu-template-on {
-        top: 0px;
-    }
-    .menu-template-off {
-        top: -600px
-    }
+}
+
+.menu-template-on {
+    top: 0px;
+}
+
+.menu-template-off {
+    top: -600px
 }
 
 @media only screen and (max-width: 840px) {
@@ -110,5 +163,8 @@
         .menu-template {
             width: 100vw;
         }
+    }
+    .menu-back {
+        width: 100vw;
     }
 }

@@ -62,20 +62,31 @@
     }
     .action-block {
         @include line-center;
-        justify-content: flex-end;
-        width: calc(100% - 40px);
+        justify-content: space-between;
+        width: 100%;
         height: 20px;
-        padding: 20px 20px;
+        padding: 20px 0px;
         border-bottom: 1px solid $selection-color;
         background-color: $main-color;
         position: relative;
-        .label-icon {
-            display: block;
-            font-size: 25px;
-            color: $action-color;
-            cursor: pointer;
-            position: absolute;
-            z-index: 100;
+        z-index: 1;
+        .menu-label {
+            width: 240px;
+            height: 60px;
+            position: relative;
+            z-index: 20;
+        }
+        .action-icons {
+            @include line-center;
+            justify-content: space-between;
+            width: 80px;
+            padding-right: 20px;
+            .label-icon {
+                display: block;
+                font-size: 25px;
+                color: $action-color;
+                cursor: pointer;
+            }
         }
     }
     .conversations-block {
@@ -101,7 +112,6 @@
                     margin-top: 5px;
                     cursor: pointer;
                     transition: 0.3s;
-                    background-color: $main-color;
                     &:hover {
                         background-color: $selection-color;
                         .label-icon {

@@ -4,6 +4,7 @@ import { HttpClientModule }   from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TitleComponent } from './title/title.component';
@@ -27,7 +28,8 @@ import { MenuComponent } from './main/menu/menu.component';
     AddWindowComponent,
     LoaderComponent,
     MessengerComponent,
-    MenuComponent
+    MenuComponent,
+
   ],
   imports: [
     BrowserModule,

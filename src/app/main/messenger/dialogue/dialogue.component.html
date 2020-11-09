@@ -20,7 +20,12 @@
     <div *ngIf="dialogue" class="messages-block">
         <div *ngIf="!loadMessages" class="messages">
             <div *ngFor="let message of messages; let i = index;" [ngClass]="{'outcome-message': message.sender === sender, 'income-message': message.sender !== sender}">
-                <div class="message-text">{{message.text}}</div>
+
+                <div class="message-text-block">
+                    <i (click)="fileDownload(message.filePath)" *ngIf="message.type === 'file'" class='fas fa-file-download file-selector'></i>
+                    <div class="message-text">{{message.text}}</div>
+                </div>
+
                 <div class="message-status">
                     <i *ngIf="i === 0 && message.sender === sender" [ngClass]="{'fas': true, 'fa-eye': dialogue.lastMessage.isRead, 'fa-eye-slash': !dialogue.lastMessage.isRead, 'read-status-icon': true}" class='fas fa-eye-slash'></i>
                     <div class="message-date">{{message.date | date:"dd.MM.yyyy - HH:mm"}}</div>
@@ -32,7 +37,13 @@
             <loader></loader>
         </div>
         <div class="message-input-block">
-            <textarea #mInput [(ngModel)]="message" class="input-field" [ngStyle]="{'height': inputHeight + 'px'}" (keydown)="getInputHeight(mInput.offsetWidth, hidenMessage.offsetWidth)" placeholder="Повідомлення" (keydown.enter)="$event.preventDefault()"></textarea>
+            <label *ngIf="!fileName" class="file-selector" for="file-input">
+              <i class='fas fa-file-upload'></i>
+            </label>
+            <i *ngIf="fileName" (click)="fileUnselect()" class='fas fa-times file-selector'></i>
+            <input (change)="onFileSelect($event)" id="file-input" type="file">
+
+            <textarea #mInput [(ngModel)]="message" [disabled]="fileName" class="input-field" [ngStyle]="{'height': inputHeight + 'px'}" (keydown)="getInputHeight(mInput.offsetWidth, hidenMessage.offsetWidth)" placeholder="Повідомлення" (keydown.enter)="$event.preventDefault()"></textarea>
             <div #hidenMessage class="hiden-message">{{message}}</div>
             <i (click)="sendMessage()" *ngIf="!onSend" class='fas fa-paper-plane send-icon'></i>
             <div *ngIf="onSend" class="message-sender">

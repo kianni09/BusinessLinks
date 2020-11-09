@@ -17,7 +17,9 @@ export class DialogueComponent implements OnInit, OnDestroy {
   public dialogueSubscribe$: Subscription = undefined;
   public messagesSubscribe$: Subscription = undefined;
 
+
   ngOnInit(): void {
+
     this.innerWidth = window.innerWidth;
     this.dialogueSubscribe$ = this.mainService.selectedDialogue$.subscribe(
       (dialogue) => {
@@ -74,34 +76,9 @@ export class DialogueComponent implements OnInit, OnDestroy {
   public message: string = '';
   public onSend: boolean = false;
 
-  public sendMessage() {
-    if (this.message.length === 0) {
-      return;
-    }
-    this.onSend = true;
-    let message: Message = {
-      type: 'text',
-      date: new Date(),
-      sender: this.sender,
-      answerID: '',
-      dialogueID: this.dialogue.dialogueID,
-      text: this.message,
-    };
-    this.message = '';
-    this.inputHeight = 25;
-    this.mainService.newMessage$(message).subscribe((result: boolean) => {
-      if (result) {
-        setTimeout(() => {
-          this.message = '';
-          this.onSend = false;
-        }, 700);
-      }
-    });
-  }
-
   public inputHeight: number = 25;
   public getInputHeight(widthInput: number, widthMessage: number): void {
-    let k:number =  +((widthMessage + 45) / widthInput).toString().split('.')[0]
+    let k: number = +((widthMessage + 45) / widthInput).toString().split('.')[0]
     let lineHeight = 25
     if (k < 1) {
       this.inputHeight = lineHeight;
@@ -144,4 +121,79 @@ export class DialogueComponent implements OnInit, OnDestroy {
       this.innerWidth <= 840 ? 450 : 0
     );
   }
+
+  public fileName: string = null;
+  public fileData: File = undefined;
+
+  public onFileSelect(event) {
+    let fileSize = event.target.files[0].size; // in bytes
+    let maxSize = 5242880;
+    if (fileSize > maxSize) {
+      alert('File size is more than 5 MB');
+    } else {
+      this.fileName = event.target.files[0].name;
+      this.fileData = event.target.files[0]
+      this.message = this.fileName;
+    }
+  }
+
+  public fileUnselect() {
+    this.fileName = null;
+    this.message = ''
+    this.fileData = undefined;
+  }
+
+  public upload(data: Message) {
+    const formData: any = new FormData();
+    formData.append('message', JSON.stringify(data));
+    formData.append("filedata", this.fileData, data.filePath);
+    return this.mainService.fileUpload(formData);
+  }
+
+  public sendMessage() {
+    if (this.message.length === 0) {
+      return;
+    }
+    let message: Message = {
+      type: this.fileData ? 'file' : 'text',
+      date: new Date(),
+      sender: this.sender,
+      answerID: '',
+      dialogueID: this.dialogue.dialogueID,
+      text: this.message
+    };
+    this.onSend = true;
+    this.message = '';
+    this.inputHeight = 25;
+    if (this.fileData) {
+      this.mainService.fileReserve({ dialogueID: message.dialogueID, name: message.text }).subscribe(
+        (path: any) => {
+          message = { ...message, filePath: path.result };
+          this.upload(message).subscribe((result) => {
+            if (result) {
+              setTimeout(() => {
+                this.fileUnselect();
+                this.onSend = false;
+              }, 700);
+            }
+          });
+        }
+      )
+    } else {
+      this.mainService.newMessage$(message).subscribe((result: boolean) => {
+        if (result) {
+          setTimeout(() => {
+            this.fileUnselect();
+            this.onSend = false;
+          }, 700);
+        }
+      });
+    }
+  }
+
+  public fileDownload(path: string) {
+    window.open('http://95.181.178.7:1313/dialogue/message-file-download/' + path);
+  }
+
+
 }

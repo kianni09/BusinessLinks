@@ -17,6 +17,7 @@ import {
 } from './main.models';
 import * as io from 'socket.io-client';
 import { NotificationsService } from './notifications.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -240,4 +241,14 @@ export class MainService {
   public dialogueRead(dialogueID: string) {
     this.socket.emit('dialogueRead', dialogueID);
   }
+
+  public fileReserve(data) {
+    return this.http.post('http://95.181.178.7:1313/dialogue/message-file-reserve/', data);
+  }
+
+  public fileUpload(data) {
+    return this.http.post('http://95.181.178.7:1313/dialogue/message-file-upload/', data);
+  }
+
+
 }

@@ -93,12 +93,24 @@
             }
             .outcome-message,
             .income-message {
-                .message-text {
-                    font-family: $font-family;
-                    color: $text-main-color;
-                    font-size: $main-text-size;
+                .message-text-block {
+                    @include flex(row, null, center);
+                    width: 100%;
                     margin-bottom: 10px;
-                    word-wrap: break-word;
+                    .file-selector {
+                        display: block;
+                        font-size: 30px;
+                        color: $action-color;
+                        cursor: pointer;
+                        margin-right: 10px;
+                    }
+                    .message-text {
+                        width: calc(100% - 45px);
+                        font-family: $font-family;
+                        color: $text-main-color;
+                        font-size: $main-text-size;
+                        word-wrap: break-word;
+                    }
                 }
                 .message-status {
                     @include line-center;
@@ -134,10 +146,21 @@
             border-radius: 6px 6px 0px 0px;
             padding: 20px 20px;
             position: relative;
+            #file-input {
+                position: absolute;
+                visibility: hidden;
+                z-index: -100;
+            }
+            .file-selector {
+                display: block;
+                font-size: 30px;
+                color: $action-color;
+                cursor: pointer;
+            }
             .input-field {
                 @include custom-input;
                 @include custom-scrollbar;
-                width: calc(100% - 60px);
+                width: calc(100% - 80px);
                 font-family: $font-family;
                 resize: none;
                 margin: 7px 0px;

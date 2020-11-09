@@ -1,5 +1,3 @@
-
-
 export interface Login {
     login: string
 }
@@ -60,4 +58,5 @@ export interface Message {
     answerID: string;
     dialogueID: string;
     text: string;
+    filePath?: string;
 }

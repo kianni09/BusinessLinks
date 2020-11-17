@@ -17,7 +17,6 @@ import {
 } from './main.models';
 import * as io from 'socket.io-client';
 import { NotificationsService } from './notifications.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +32,7 @@ export class MainService {
     this.notificator.requestPermission();
   }
 
-  private url = 'http://95.181.178.7:1313';
+  private url = environment.base;
   private socket = io(this.url, {
     reconnection: true,
     reconnectionDelay: 1000,
@@ -243,12 +242,15 @@ export class MainService {
   }
 
   public fileReserve(data) {
-    return this.http.post('http://95.181.178.7:1313/dialogue/message-file-reserve/', data);
+    return this.http.post(environment.fileReserve, data);
   }
 
   public fileUpload(data) {
-    return this.http.post('http://95.181.178.7:1313/dialogue/message-file-upload/', data);
+    return this.http.post(environment.fileUpload, data);
   }
 
+  public fileDownload (data) {
+    window.open(environment.fileDownload + data);
+  }
 
 }

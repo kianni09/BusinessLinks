@@ -2,6 +2,7 @@ let link = "http://95.181.178.7:1313"
 
 export const environment = {
   production: true,
+  base: link,
 
   getUser: link + "/user/get/",
   loginCheck: link + "/user/login-check/",
@@ -14,6 +15,10 @@ export const environment = {
   deleteDialogues: link + "/user/dialoguies/delete/",
 
   getMessages: link + "/dialogue/message-get",
-  newMessage: link + "/dialogue/message-new"
+  newMessage: link + "/dialogue/message-new",
+
+  fileReserve: link + '/dialogue/message-file-reserve/',
+  fileUpload: link + '/dialogue/message-file-upload/',
+  fileDownload: link + '/dialogue/message-file-download/',
 
 };

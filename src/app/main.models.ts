@@ -27,6 +27,11 @@ export interface User {
     dialogues: string [];
 }
 
+export interface ReadStatus {
+  user: string;
+  status: boolean;
+}
+
 export interface LastMessage{
   sender: string;
   date: Date | string;
@@ -34,6 +39,8 @@ export interface LastMessage{
 }
 
 export interface DialogueRAW  {
+  name?: string;
+  type?: string;
   dialogueID: string;
   firstName: string;
   secondName: string;

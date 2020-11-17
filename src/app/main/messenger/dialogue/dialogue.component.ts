@@ -192,7 +192,7 @@ export class DialogueComponent implements OnInit, OnDestroy {
   }
 
   public fileDownload(path: string) {
-    window.open('http://95.181.178.7:1313/dialogue/message-file-download/' + path);
+    this.mainService.fileDownload(path);
   }
 
 

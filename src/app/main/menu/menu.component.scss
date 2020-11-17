@@ -23,13 +23,6 @@
                 transition: all 0.3s ease;
             }
         }
-        .menu-icon {
-            &:hover {
-                .line:nth-child(2) {
-                    margin: 7px 0px;
-                }
-            }
-        }
         .close-icon {
             .line:nth-child(1) {
                 transform: translatey(8px) rotate(45deg);

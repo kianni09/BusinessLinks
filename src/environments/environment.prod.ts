@@ -1,4 +1,4 @@
-let link = "http://95.181.178.7:1313"
+let link = "http://46.253.132.73:1313"
 
 export const environment = {
   production: true,
